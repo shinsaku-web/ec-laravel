@@ -9,6 +9,7 @@ function App() {
             <h1 style={{ color: "gold" }}>React App</h1>
             <div>
                 <BasicExample />
+                {/* <RouterProvider router={router} /> */}
             </div>
         </div>
     );
