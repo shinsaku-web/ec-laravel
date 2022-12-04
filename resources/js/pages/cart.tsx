@@ -1,7 +1,11 @@
+import { UserPageLayout } from "../components/organisms/UserPageLayout";
+
 export const CartPage = () => {
     return (
-        <div>
-            <p>カートページ</p>
-        </div>
+        <UserPageLayout>
+            <div>
+                <p>カートページ</p>
+            </div>
+        </UserPageLayout>
     );
 };

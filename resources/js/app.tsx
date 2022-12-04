@@ -1,18 +1,12 @@
 import "./bootstrap";
+import "../css/app.css";
 import ReactDOM from "react-dom/client";
 import "bootstrap/dist/css/bootstrap.min.css";
-import BasicExample from "./components/BasicExample";
+import { RouterProvider } from "react-router-dom";
+import { router } from "./routes/router";
 
 function App() {
-    return (
-        <div style={{ padding: "40px" }}>
-            <h1 style={{ color: "gold" }}>React App</h1>
-            <div>
-                <BasicExample />
-                {/* <RouterProvider router={router} /> */}
-            </div>
-        </div>
-    );
+    return <RouterProvider router={router} />;
 }
 
 const root = ReactDOM.createRoot(document.getElementById("app") as HTMLElement);
