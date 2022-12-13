@@ -56,7 +56,6 @@ Route::post('/admin/login', function (Request $request) {
 // ユーザーが使用するapi
 Route::middleware('auth:users')->group(function () {
     Route::get("/user", function (Request $request) {
-        // return ["user" => "ok!"];
         return auth("user")->user();
     });
 });
