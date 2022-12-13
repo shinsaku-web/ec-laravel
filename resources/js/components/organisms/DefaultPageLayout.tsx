@@ -8,7 +8,15 @@ interface Props {
 export const DefaultPageLayout = ({ children }: Props) => {
     return (
         <Container>
-            <div style={{ padding: "40px" }}>{children}</div>
+            <div
+                style={{
+                    padding: "80px 40px",
+                    maxWidth: "600px",
+                    margin: "auto",
+                }}
+            >
+                {children}
+            </div>
         </Container>
     );
 };
