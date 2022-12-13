@@ -18,13 +18,23 @@ use Illuminate\Support\Facades\Route;
 // Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //     return $request->user();
 // });
-
-Route::middleware('auth:sanctum')->group(function () {
-    Route::get("/owner", function (Request $request) {
-        return json_encode(["hello" => "hokkaido"]);
-    });
+Route::get('/test', function () {
+    return json_encode(["hello" => "tohoku"]);
 });
 
-Route::get('/users', function () {
-    return json_encode(["hello" => "tohoku"]);
+Route::post('/user/login', function (Request $request) {
+    $credentials = $request->validate([
+        "email" => "required | email",
+        "password" => "required",
+    ]);
+    if (auth("users")->attempt($credentials)) {
+        return ["result" => true]; //フロントでページ遷移させる
+    }
+    return response(["message" => "ユーザーが見つかりません。"], 422);
+});
+
+Route::middleware('auth:users')->group(function () {
+    Route::get("/user", function (Request $request) {
+        return ["user" => "ok!"];
+    });
 });
