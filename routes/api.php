@@ -15,14 +15,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
 
-Route::get('/login', function (Request $request) {
-    return "ログインページ";
+Route::middleware('auth:sanctum')->group(function () {
+    Route::get("/owner", function (Request $request) {
+        return json_encode(["hello" => "hokkaido"]);
+    });
 });
 
 Route::get('/users', function () {
-    return json_encode(["hello" => "hokkaido"]);
+    return json_encode(["hello" => "tohoku"]);
 });
