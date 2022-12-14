@@ -25,7 +25,7 @@ export const useLogin = () => {
                     throw err;
                 });
             if (data.isAuth) {
-                //グローバルにログイン状態をセット
+                //TODO:グローバルにログイン状態をセット
                 navigate("/");
             }
         } catch (error) {

@@ -12,7 +12,14 @@ export const LoginForm = () => {
         handleLogin,
     } = useLogin();
     return (
-        <Form onSubmit={(e) => handleLogin(e)}>
+        <Form
+            style={{
+                border: "1px solid #ddd",
+                padding: "24px",
+                borderRadius: "4px",
+            }}
+            onSubmit={(e) => handleLogin(e)}
+        >
             {error && (
                 <p style={{ color: "red", fontWeight: "bold" }}>
                     Something is Wrong !{" "}

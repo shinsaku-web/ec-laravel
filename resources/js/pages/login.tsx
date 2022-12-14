@@ -6,12 +6,12 @@ export const LoginUserPage = () => {
         <div>
             <DefaultPageLayout>
                 <div>
-                    <h1>ユーザーログインページ</h1>
+                    <h1 style={{ textAlign: "center" }}>
+                        ユーザーログインページ
+                    </h1>
                     <hr />
-                    <div style={{ height: "40px" }}></div>
-                    <h2>ログイン成功時orログイン済みならトップに飛ばす。</h2>
-                    <hr />
-                    <div style={{ height: "40px" }}></div>
+                    <div style={{ height: "24px" }}></div>
+                    <p>ログイン成功時orログイン済みならトップに飛ばす。</p>
                     <LoginForm />
                 </div>
             </DefaultPageLayout>

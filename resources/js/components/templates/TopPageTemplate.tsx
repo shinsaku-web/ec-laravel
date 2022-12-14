@@ -5,6 +5,7 @@ export const TopPageTemplate = () => {
             <p>
                 ログイン済みなら商品一覧、未ログインなら「未ログイン」と書いたページでOK
             </p>
+            <p>Reduxでログイン管理する</p>
         </div>
     );
 };
