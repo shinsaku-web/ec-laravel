@@ -1,16 +1,15 @@
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { login } from "../../features/user/userSlice";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 export const TopPageTemplate = () => {
-    const selector = useSelector((state) => state);
-    console.log(selector);
+    const navigate = useNavigate();
 
-    const dispatch = useDispatch();
+    const user = useSelector((state) => state.user);
+    console.log(user);
 
-    useEffect(() => {
-        dispatch(login({ id: 2 }));
-    }, []);
+    if (user.id === null) {
+        navigate("/login");
+    }
 
     return (
         <div>
@@ -18,7 +17,9 @@ export const TopPageTemplate = () => {
             <p>
                 ログイン済みなら商品一覧、未ログインなら「未ログイン」と書いたページでOK
             </p>
-            <p>Reduxでログイン管理する</p>
+            <p>{user.name}さん</p>
+            <a href="/login">ログインページ</a>
+            <hr />
         </div>
     );
 };
