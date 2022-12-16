@@ -9,8 +9,7 @@ export const TopPageTemplate = () => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        alert("dispatch実行");
-        dispatch(login());
+        dispatch(login({ id: 2 }));
     }, []);
 
     return (
