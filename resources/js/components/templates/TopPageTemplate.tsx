@@ -1,4 +1,18 @@
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { login } from "../../features/user/userSlice";
+
 export const TopPageTemplate = () => {
+    const selector = useSelector((state) => state);
+    console.log(selector);
+
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        alert("dispatch実行");
+        dispatch(login());
+    }, []);
+
     return (
         <div>
             <h2>トップページです。</h2>
