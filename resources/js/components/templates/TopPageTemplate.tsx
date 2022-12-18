@@ -1,25 +1,45 @@
-import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { Button, Row, Col } from "react-bootstrap";
 import { useAuth } from "../../hooks/useAuth";
+import { GuestPageLayout } from "../organisms/GuestPageLayout";
+import { UserPageLayout } from "../organisms/UserPageLayout";
 
 export const TopPageTemplate = () => {
-    const navigate = useNavigate();
     const { id, name } = useAuth();
-    useEffect(() => {
-        if (id === null) {
-            navigate("/");
-        }
-    }, [id]);
+
+    if (id === null) {
+        return (
+            <GuestPageLayout>
+                <div className="p-4">
+                    <Row style={{ paddingTop: "120px" }}>
+                        <Col xs={6} className={"d-grid px-4"}>
+                            <Button
+                                style={{ color: "#fff" }}
+                                variant="secondary"
+                                size="lg"
+                                href="/login"
+                            >
+                                ログインページへ
+                            </Button>
+                        </Col>
+                        <Col xs={6} className={"d-grid px-4"}>
+                            <Button
+                                style={{ color: "#fff" }}
+                                variant="success"
+                                size="lg"
+                                href="/register"
+                            >
+                                会員登録
+                            </Button>
+                        </Col>
+                    </Row>
+                </div>
+            </GuestPageLayout>
+        );
+    }
 
     return (
-        <div>
-            <h2>トップページです。</h2>
-            <p>
-                ログイン済みなら商品一覧、未ログインなら「未ログイン」と書いたページでOK
-            </p>
-            <p>{name}さん</p>
-            <a href="/login">ログインページ</a>
-            <hr />
-        </div>
+        <UserPageLayout>
+            <p>こんにちは、{name}さん</p>
+        </UserPageLayout>
     );
 };

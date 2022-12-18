@@ -1,20 +1,15 @@
-import { DefaultPageLayout } from "../components/organisms/DefaultPageLayout";
+import { GuestPageLayout } from "../components/organisms/GuestPageLayout";
 import { LoginForm } from "../components/organisms/LoginForm";
 
 export const LoginUserPage = () => {
     return (
         <div>
-            <DefaultPageLayout>
-                <div>
-                    <h1 style={{ textAlign: "center" }}>
-                        ユーザーログインページ
-                    </h1>
-                    <hr />
-                    <div style={{ height: "24px" }}></div>
-                    <p>ログイン成功時orログイン済みならトップに飛ばす。</p>
+            <GuestPageLayout>
+                <div style={{ maxWidth: "600px", margin: "auto" }}>
+                    <h3 className="pb-4 pt-4 text-center">ログイン</h3>
                     <LoginForm />
                 </div>
-            </DefaultPageLayout>
+            </GuestPageLayout>
         </div>
     );
 };

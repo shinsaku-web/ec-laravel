@@ -16,7 +16,7 @@ export const LoginForm = () => {
             style={{
                 border: "1px solid #ddd",
                 padding: "24px",
-                borderRadius: "4px",
+                borderRadius: "8px",
             }}
             onSubmit={(e) => handleLogin(e)}
         >
@@ -45,9 +45,11 @@ export const LoginForm = () => {
                 />
             </Form.Group>
             {/* forgot password入れる? */}
-            <Button variant="primary" type="submit">
-                Submit
-            </Button>
+            <div className="d-grid pt-2">
+                <Button variant="primary" type="submit">
+                    Submit
+                </Button>
+            </div>
         </Form>
     );
 };
