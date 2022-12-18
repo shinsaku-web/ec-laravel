@@ -29,7 +29,7 @@ export const RegisterForm = () => {
                     Something is Wrong !
                 </p>
             )}
-            <Form.Group className="mb-3" controlId="formBasicEmail">
+            <Form.Group className="mb-3" controlId="formBasicName">
                 <Form.Label>Your Name</Form.Label>
                 <Form.Control
                     type="name"
@@ -58,7 +58,7 @@ export const RegisterForm = () => {
                 />
             </Form.Group>
 
-            <Form.Group className="mb-3" controlId="formBasicPassword">
+            <Form.Group className="mb-3" controlId="formBasicPassword2">
                 <Form.Label>Confirm Password</Form.Label>
                 <Form.Control
                     type="password2"
