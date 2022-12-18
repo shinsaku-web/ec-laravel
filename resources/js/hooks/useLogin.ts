@@ -19,8 +19,6 @@ export const useLogin = () => {
                     return ApiClient.post("/api/user/login", {
                         email: inputEmail,
                         password: inputPassword,
-                        // email: "test@example.com",
-                        // password: "password",
                     });
                 })
                 .catch((err) => {
@@ -36,9 +34,11 @@ export const useLogin = () => {
                 dispatch(login({ id, name }));
 
                 navigate("/");
+            } else {
+                throw new Error("認証に失敗しました。");
             }
         } catch (error) {
-            console.log(error);
+            console.error(error);
         }
     };
     return {

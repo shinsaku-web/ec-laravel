@@ -22,7 +22,7 @@ export const LoginForm = () => {
         >
             {error && (
                 <p style={{ color: "red", fontWeight: "bold" }}>
-                    Something is Wrong !{" "}
+                    Something is Wrong !
                 </p>
             )}
             <Form.Group className="mb-3" controlId="formBasicEmail">

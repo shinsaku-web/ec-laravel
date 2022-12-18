@@ -8,8 +8,8 @@ export const userSlice = createSlice({
     },
     reducers: {
         login: (state, { payload }) => {
-            // ここでログイン処理をする
-            state = payload;
+            state.id = payload.id;
+            state.name = payload.name;
         },
     },
 });

@@ -1,15 +1,7 @@
-import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useAuthUser } from "../../hooks/useAuthUser";
 
 export const TopPageTemplate = () => {
-    const navigate = useNavigate();
-
-    const user = useSelector((state) => state.user);
-    console.log(user);
-
-    if (user.id === null) {
-        navigate("/login");
-    }
+    const { name } = useAuthUser();
 
     return (
         <div>
@@ -17,7 +9,7 @@ export const TopPageTemplate = () => {
             <p>
                 ログイン済みなら商品一覧、未ログインなら「未ログイン」と書いたページでOK
             </p>
-            <p>{user.name}さん</p>
+            <p>{name}さん</p>
             <a href="/login">ログインページ</a>
             <hr />
         </div>
