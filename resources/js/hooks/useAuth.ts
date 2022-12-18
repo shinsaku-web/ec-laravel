@@ -12,6 +12,7 @@ import { User } from "../types/user";
 export const useAuth = () => {
     const user = useSelector((state: { user: User }) => state.user);
     const dispatch = useDispatch();
+    console.log("rendered");
     useEffect(() => {
         if (user.id === null) {
             (async () => {

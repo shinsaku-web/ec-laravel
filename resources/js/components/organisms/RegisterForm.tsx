@@ -70,7 +70,7 @@ export const RegisterForm = () => {
             {/* forgot password入れる? */}
             <div className="d-grid pt-2">
                 <Button variant="primary" type="submit">
-                    会員登録
+                    登録する
                 </Button>
             </div>
         </Form>
