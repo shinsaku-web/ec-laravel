@@ -56,14 +56,14 @@ Route::post('/admin/login', function (Request $request) {
 // ユーザーが使用するapi
 Route::middleware('auth:users')->group(function () {
     Route::get("/user", function (Request $request) {
-        return auth("user")->user();
+        return auth("users")->user();
     });
 });
 
 // オーナーが使用するapi
 Route::middleware('auth:owners')->group(function () {
     Route::get("/owner", function (Request $request) {
-        return auth("owner")->user();
+        return auth("owners")->user();
     });
 });
 
