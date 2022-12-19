@@ -61,7 +61,7 @@ export const RegisterForm = () => {
             <Form.Group className="mb-3" controlId="formBasicPassword2">
                 <Form.Label>Confirm Password</Form.Label>
                 <Form.Control
-                    type="password2"
+                    type="password"
                     placeholder="Confirm Password"
                     value={inputPassword2}
                     onChange={(e) => setInputPassword2(e.currentTarget.value)}
