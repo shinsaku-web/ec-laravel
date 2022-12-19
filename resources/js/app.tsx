@@ -6,6 +6,7 @@ import { RouterProvider } from "react-router-dom";
 import { router } from "./routes/router";
 import { Provider } from "react-redux";
 import store from "./store/store";
+import React from "react";
 
 function App() {
     return (
@@ -16,4 +17,8 @@ function App() {
 }
 
 const root = ReactDOM.createRoot(document.getElementById("app") as HTMLElement);
-root.render(<App />);
+root.render(
+    <React.StrictMode>
+        <App />
+    </React.StrictMode>
+);

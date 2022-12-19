@@ -12,7 +12,7 @@ import { User } from "../types/user";
 export const useAuth = () => {
     const user = useSelector((state: { user: User }) => state.user);
     const dispatch = useDispatch();
-    console.log("rendered");
+
     useEffect(() => {
         if (user.id === null) {
             (async () => {
@@ -23,7 +23,7 @@ export const useAuth = () => {
                 dispatch(login({ id, name }));
             })();
         }
-    }, [user]);
+    }, [user.id]);
 
     return user;
 };
