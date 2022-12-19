@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\UserController;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -19,16 +20,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('/user', [UserController::class, "store"]);
 
-Route::post('/user/login', function (Request $request) {
-    $credentials = $request->validate([
-        "email" => "required | email",
-        "password" => "required",
-    ]);
-    if (auth("users")->attempt($credentials)) {
-        return ["isAuth" => true]; //フロントでページ遷移させる
-    }
-    return response(["message" => "ユーザーが見つかりません。"], 422);
-});
+Route::post('/user/login', [LoginController::class, "login"]);
 
 Route::post('/owner/login', function (Request $request) {
     $credentials = $request->validate([
