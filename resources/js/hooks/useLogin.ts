@@ -14,7 +14,7 @@ export const useLogin = () => {
     const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         try {
-            const { data } = await ApiClient.get("/sanctum/csrf-cookie")
+            const { status } = await ApiClient.get("/sanctum/csrf-cookie")
                 .then(() => {
                     return ApiClient.post("/api/user/login", {
                         email: inputEmail,
@@ -25,8 +25,8 @@ export const useLogin = () => {
                     setError(true);
                     throw err;
                 });
-            if (data.isAuth) {
-                //TODO:グローバルにログイン状態をセット
+
+            if (status === 200) {
                 const {
                     data: { id, name },
                 } = await ApiClient.get("/api/user");

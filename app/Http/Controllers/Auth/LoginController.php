@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class LoginController extends Controller
 {
@@ -14,8 +15,8 @@ class LoginController extends Controller
             "password" => "required",
         ]);
         if (auth("users")->attempt($credentials)) {
-            return response(["isAuth" => true]);
+            return response()->json(["message" => "Login Success!!"], Response::HTTP_OK);
         }
-        return response(["message" => "ユーザーが見つかりません。"], 422);
+        return response()->json(["message" => "Login Failed!!"], Response::HTTP_UNPROCESSABLE_ENTITY);
     }
 }

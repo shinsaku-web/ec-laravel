@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\UserController;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -18,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::post('/user', [UserController::class, "store"]);
+Route::post('/user', [RegisterController::class, "register"]);
 
 Route::post('/user/login', [LoginController::class, "login"]);
 
