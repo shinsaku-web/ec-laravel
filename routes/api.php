@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\UserController;
 use App\Models\User;
@@ -20,7 +21,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::post('/user', [RegisterController::class, "register"]);
-
 Route::post('/user/login', [LoginController::class, "login"]);
 
 Route::post('/owner/login', function (Request $request) {
@@ -45,23 +45,24 @@ Route::post('/admin/login', function (Request $request) {
     return response(["message" => "管理者が見つかりません。"], 422);
 });
 
-// ユーザーが使用するapi
-Route::middleware('auth:users')->group(function () {
-    Route::get("/user", function (Request $request) {
+// 認証済みユーザーが使用するapi
+Route::middleware('auth:users')->prefix("user")->group(function () {
+    Route::get("/", function (Request $request) {
         return auth("users")->user();
     });
+    Route::post('/logout', [LogoutController::class, "logout"]);
 });
 
-// オーナーが使用するapi
-Route::middleware('auth:owners')->group(function () {
-    Route::get("/owner", function (Request $request) {
+// 認証済みオーナーが使用するapi
+Route::middleware('auth:owners')->prefix("owner")->group(function () {
+    Route::get("/", function (Request $request) {
         return auth("owners")->user();
     });
 });
 
-// 管理者が使用するapi
-Route::middleware('auth:admin')->group(function () {
-    Route::get("/admin", function (Request $request) {
+// 認証済み管理者が使用するapi
+Route::middleware('auth:admin')->prefix("admin")->group(function () {
+    Route::get("/", function (Request $request) {
         return auth("admin")->user();
     });
 });
