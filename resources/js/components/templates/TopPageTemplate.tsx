@@ -9,8 +9,16 @@ export const TopPageTemplate = () => {
     if (id === null) {
         return (
             <GuestPageLayout>
-                <div className="p-4">
-                    <Row style={{ paddingTop: "120px" }}>
+                <div
+                    className="p-4"
+                    style={{
+                        maxWidth: "600px",
+                        margin: "auto",
+                        border: "1px solid #ddd",
+                        borderRadius: "8px",
+                    }}
+                >
+                    <Row style={{ padding: "80px 0" }}>
                         <Col xs={6} className={"d-grid px-4"}>
                             <Button
                                 style={{ color: "#fff" }}
