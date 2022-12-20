@@ -46,23 +46,23 @@ Route::post('/admin/login', function (Request $request) {
 });
 
 // 認証済みユーザーが使用するapi
-Route::middleware('auth:users')->group(function () {
-    Route::get("/user", function (Request $request) {
+Route::middleware('auth:users')->prefix("user")->group(function () {
+    Route::get("/", function (Request $request) {
         return auth("users")->user();
     });
-    Route::post('/user/logout', [LogoutController::class, "logout"]);
+    Route::post('/logout', [LogoutController::class, "logout"]);
 });
 
 // 認証済みオーナーが使用するapi
-Route::middleware('auth:owners')->group(function () {
-    Route::get("/owner", function (Request $request) {
+Route::middleware('auth:owners')->prefix("owner")->group(function () {
+    Route::get("/", function (Request $request) {
         return auth("owners")->user();
     });
 });
 
 // 認証済み管理者が使用するapi
-Route::middleware('auth:admin')->group(function () {
-    Route::get("/admin", function (Request $request) {
+Route::middleware('auth:admin')->prefix("admin")->group(function () {
+    Route::get("/", function (Request $request) {
         return auth("admin")->user();
     });
 });
