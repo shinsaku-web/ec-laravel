@@ -1,10 +1,24 @@
+import { useEffect, useState } from "react";
 import { Button, Row, Col } from "react-bootstrap";
 import { useAuth } from "../../hooks/useAuth";
 import { GuestPageLayout } from "../organisms/GuestPageLayout";
+import { Loading } from "../organisms/Loading";
 import { UserPageLayout } from "../organisms/UserPageLayout";
 
 export const TopPageTemplate = () => {
+    const [isLoading, setIsLoading] = useState(true);
     const { id, name } = useAuth();
+
+    useEffect(() => {
+        const timerID = setTimeout(() => {
+            setIsLoading(false);
+        }, 300);
+        return () => clearTimeout(timerID);
+    }, []);
+
+    if (isLoading) {
+        return <Loading />;
+    }
 
     if (id === null) {
         return (
