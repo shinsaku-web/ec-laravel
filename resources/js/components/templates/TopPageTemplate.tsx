@@ -28,7 +28,7 @@ export const TopPageTemplate = () => {
                                 size="lg"
                                 href="/register"
                             >
-                                会員登録
+                                ユーザー登録
                             </Button>
                         </Col>
                     </Row>
