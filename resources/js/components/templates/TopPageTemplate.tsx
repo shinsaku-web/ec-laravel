@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Button, Row, Col } from "react-bootstrap";
 import { useAuth } from "../../hooks/useAuth";
+import { CardPrimary } from "../molecules/CardPrimary";
 import { GuestPageLayout } from "../organisms/GuestPageLayout";
 import { Loading } from "../organisms/Loading";
 import { UserPageLayout } from "../organisms/UserPageLayout";
@@ -61,7 +62,14 @@ export const TopPageTemplate = () => {
 
     return (
         <UserPageLayout>
-            <p>こんにちは、{name}さん</p>
+            <p className="mb-4">こんにちは、{name}さん</p>
+            <Row xs={1} md={2} lg={3} className="g-4">
+                {Array.from({ length: 5 }).map((_, idx) => (
+                    <Col key={idx}>
+                        <CardPrimary />
+                    </Col>
+                ))}
+            </Row>
         </UserPageLayout>
     );
 };
