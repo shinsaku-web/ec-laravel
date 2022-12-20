@@ -8,7 +8,9 @@ export const useLogout = () => {
     const dispatch = useDispatch();
 
     const handleLogout = async () => {
-        // TODO:ログアウトしますか?のアラートで条件分岐
+        if (!confirm("ログアウトしますか？")) {
+            return;
+        }
         const { status } = await ApiClient.post("/api/user/logout");
         if (status === 200) {
             dispatch(login({ id: null, name: null }));
