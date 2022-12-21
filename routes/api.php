@@ -1,12 +1,9 @@
 <?php
 
-use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\Auth\LogoutController;
-use App\Http\Controllers\Auth\RegisterController;
-use App\Http\Controllers\UserController;
-use App\Models\User;
+use App\Http\Controllers\Auth\User\LoginController;
+use App\Http\Controllers\Auth\User\LogoutController;
+use App\Http\Controllers\Auth\User\RegisterController;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
