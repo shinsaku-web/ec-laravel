@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ApiClient } from "../apis/ApiClient";
 import { USER_TYPE } from "../constants/userTypes";
-import { login } from "../features/user/userSlice";
+import { userAuth } from "../features/user/userSlice";
 import { User } from "../types/user";
 
 /**
@@ -21,7 +21,7 @@ export const useAuth = (userType: USER_TYPE) => {
                     data: { id, name },
                 } = await ApiClient.get(`/api/${userType}`);
 
-                dispatch(login({ id, name }));
+                dispatch(userAuth({ id, name }));
             })();
         }
     }, [user.id]);

@@ -6,7 +6,9 @@ export const LoginOwnerPage = () => {
         <div>
             <GuestPageLayout>
                 <div style={{ maxWidth: "600px", margin: "auto" }}>
-                    <h3 className="pb-4 pt-4 text-center">ログイン</h3>
+                    <h3 className="pb-4 pt-4 text-center">
+                        店舗管理者ログイン
+                    </h3>
                     <LoginForm userType="owner" />
                 </div>
             </GuestPageLayout>

@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { ApiClient } from "../apis/ApiClient";
 import { USER_TYPE } from "../constants/userTypes";
-import { login } from "../features/user/userSlice";
+import { userAuth } from "../features/user/userSlice";
 
 export const useLogin = (userType: USER_TYPE) => {
     const [inputEmail, setInputEmail] = useState("");
@@ -32,7 +32,7 @@ export const useLogin = (userType: USER_TYPE) => {
                     data: { id, name },
                 } = await ApiClient.get(`/api/${userType}`);
 
-                dispatch(login({ id, name }));
+                dispatch(userAuth({ id, name }));
 
                 navigate("/");
             } else {

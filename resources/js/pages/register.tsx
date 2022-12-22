@@ -7,7 +7,7 @@ export const RegisterUserPage = () => {
             <GuestPageLayout>
                 <div style={{ maxWidth: "600px", margin: "auto" }}>
                     <h3 className="pb-4 pt-4 text-center">ユーザー登録</h3>
-                    <RegisterForm />
+                    <RegisterForm userType="user" />
                 </div>
             </GuestPageLayout>
         </div>

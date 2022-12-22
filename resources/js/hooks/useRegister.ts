@@ -14,14 +14,17 @@ export const useRegister = (userType: USER_TYPE) => {
     const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         try {
-            const { data } = await ApiClient.post(`/api/${userType}`, {
+            const { status } = await ApiClient.post(`/api/${userType}`, {
                 name: inputName,
                 email: inputEmail,
                 password: inputPassword,
                 password2: inputPassword2,
             });
-            console.log(data);
-            navigate("/login");
+            if (status === 200) {
+                navigate("/login");
+            } else {
+                throw new Error("登録に失敗しました。");
+            }
         } catch (error) {
             setError(true);
             console.error(error);
