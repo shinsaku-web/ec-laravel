@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ApiClient } from "../apis/ApiClient";
+import { USER_TYPE } from "../constants/userTypes";
 
-export const useRegister = () => {
+export const useRegister = (userType: USER_TYPE) => {
     const [inputName, setInputName] = useState("");
     const [inputEmail, setInputEmail] = useState("");
     const [inputPassword, setInputPassword] = useState("");
@@ -13,7 +14,7 @@ export const useRegister = () => {
     const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         try {
-            const { data } = await ApiClient.post("/api/user", {
+            const { data } = await ApiClient.post(`/api/${userType}`, {
                 name: inputName,
                 email: inputEmail,
                 password: inputPassword,
