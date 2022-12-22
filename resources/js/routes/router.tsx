@@ -5,21 +5,17 @@ import { ShopsPage } from "../pages/owner/shops";
 import { ProductPage } from "../pages/product/[id]";
 import { CartPage } from "../pages/cart";
 import { RegisterUserPage } from "../pages/register";
-import { RegisterOwnerPage } from "../pages/owner/register";
 import { LoginUserPage } from "../pages/login";
 import { ProductsIndexPage } from "../pages/owner/products";
 import { ProductCreatePage } from "../pages/owner/products/create";
 import { LoginOwnerPage } from "../pages/owner/login";
 import { OwnerPageLayout } from "../components/organisms/OwnerPageLayout";
+import { AdminPageLayout } from "../components/organisms/AdminPageLayout";
 
 export const router = createBrowserRouter([
     {
         path: "/",
         element: <IndexPage />,
-    },
-    {
-        path: "/owner/register",
-        element: <RegisterOwnerPage />,
     },
     {
         path: "/owner/login",
@@ -46,6 +42,10 @@ export const router = createBrowserRouter([
         element: <OwnerPageLayout />,
         children: [
             {
+                path: "/owner",
+                element: <ProductsIndexPage />,
+            },
+            {
                 path: "/owner/products",
                 element: <ProductsIndexPage />,
             },
@@ -60,6 +60,24 @@ export const router = createBrowserRouter([
             {
                 path: "/owner/shops",
                 element: <ShopsPage />,
+            },
+        ],
+    },
+    {
+        path: "/admin",
+        element: <AdminPageLayout />,
+        children: [
+            {
+                path: "/admin/owners-list",
+            },
+            {
+                path: "/admin/create-owner",
+            },
+            {
+                path: "/admin/update-owner",
+            },
+            {
+                path: "/admin/delete-owner",
             },
         ],
     },
