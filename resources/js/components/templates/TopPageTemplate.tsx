@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Button, Row, Col } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import { useAuth } from "../../hooks/useAuth";
 import { CardPrimary } from "../molecules/CardPrimary";
 import { GuestPageLayout } from "../organisms/GuestPageLayout";
@@ -55,6 +56,9 @@ export const TopPageTemplate = () => {
                             </Button>
                         </Col>
                     </Row>
+                    <p>
+                        <Link to={"/owner"}>店舗オーナーの方はこちら</Link>
+                    </p>
                 </div>
             </GuestPageLayout>
         );
