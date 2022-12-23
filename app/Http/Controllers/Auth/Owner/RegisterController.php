@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth\Owner;
 
 use App\Http\Controllers\Controller;
+use App\Models\Owner;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -23,14 +24,14 @@ class RegisterController extends Controller
             return response()->json($validator->messages(), Response::HTTP_UNPROCESSABLE_ENTITY);
         }
 
-        $user = User::create([
+        $user = Owner::create([
             "name" => $request->name,
             "email" => $request->email,
             "password" => Hash::make($request->password),
         ]);
         $json = [
             'data' => $user,
-            'message' => 'User registration success!',
+            'message' => 'Owner registration success!',
             'error' => ''
         ];
         return response()->json($json, Response::HTTP_OK);

@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Controllers\Auth\Admin\LoginController as AdminLoginController;
+use App\Http\Controllers\Auth\Admin\RegisterController as AdminRegisterController;
+use App\Http\Controllers\Auth\Owner\LoginController as OwnerLoginController;
+use App\Http\Controllers\Auth\Owner\RegisterController as OwnerRegisterController;
 use App\Http\Controllers\Auth\User\LoginController;
 use App\Http\Controllers\Auth\User\LogoutController;
 use App\Http\Controllers\Auth\User\RegisterController;
@@ -20,27 +24,15 @@ use Illuminate\Support\Facades\Route;
 Route::post('/user', [RegisterController::class, "register"]);
 Route::post('/user/login', [LoginController::class, "login"]);
 
-Route::post('/owner/login', function (Request $request) {
-    $credentials = $request->validate([
-        "email" => "required | email",
-        "password" => "required",
-    ]);
-    if (auth("owners")->attempt($credentials)) {
-        return ["isAuth" => true]; //フロントでページ遷移させる
-    }
-    return response(["message" => "オーナーが見つかりません。"], 422);
-});
+Route::post('/owner', [OwnerRegisterController::class, "register"]);
+Route::post(
+    '/owner/login',
+    [OwnerLoginController::class, "login"]
+);
 
-Route::post('/admin/login', function (Request $request) {
-    $credentials = $request->validate([
-        "email" => "required | email",
-        "password" => "required",
-    ]);
-    if (auth("admin")->attempt($credentials)) {
-        return ["isAuth" => true]; //フロントでページ遷移させる
-    }
-    return response(["message" => "管理者が見つかりません。"], 422);
-});
+Route::post('/admin', [AdminRegisterController::class, "register"]);
+Route::post('/admin/login', [AdminLoginController::class, "login"]);
+
 
 // 認証済みユーザーが使用するapi
 Route::middleware('auth:users')->prefix("user")->group(function () {
