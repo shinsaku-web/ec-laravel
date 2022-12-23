@@ -1,8 +1,11 @@
 import { Container, Nav, Navbar, NavDropdown, Stack } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { BiUser } from "react-icons/bi";
+import { useLogout } from "../../hooks/useLogout";
 
 export const NavAdmin = () => {
+    const { handleLogout } = useLogout("admin");
+
     return (
         <Navbar className="p-4" bg="light" expand="lg">
             <Container>
@@ -22,18 +25,13 @@ export const NavAdmin = () => {
                                 id="basic-nav-dropdown"
                                 className="pe-4"
                             >
-                                <NavDropdown.Item href="#action/3.1">
-                                    Action
+                                <NavDropdown.Item
+                                    onClick={() => console.log("click")}
+                                >
+                                    ユーザー設定
                                 </NavDropdown.Item>
-                                <NavDropdown.Item href="#action/3.2">
-                                    Another action
-                                </NavDropdown.Item>
-                                <NavDropdown.Item href="#action/3.3">
-                                    Something
-                                </NavDropdown.Item>
-                                <NavDropdown.Divider />
-                                <NavDropdown.Item href="#action/3.4">
-                                    Separated link
+                                <NavDropdown.Item onClick={handleLogout}>
+                                    ログアウト
                                 </NavDropdown.Item>
                             </NavDropdown>
                         </Stack>

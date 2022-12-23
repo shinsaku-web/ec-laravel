@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { useLogout } from "../../hooks/useLogout";
 
 export const NavUser = () => {
-    const { handleLogout } = useLogout();
+    const { handleLogout } = useLogout("user");
     return (
         <Navbar className="p-4" bg="light" expand="lg">
             <Container>
