@@ -24,7 +24,7 @@ export const TopPageTemplate = () => {
 
     if (id === null) {
         return (
-            <GuestPageLayout>
+            <GuestPageLayout guestType="user">
                 <div
                     className="p-4"
                     style={{

@@ -11,6 +11,7 @@ import { ProductCreatePage } from "../pages/owner/products/create";
 import { LoginOwnerPage } from "../pages/owner/login";
 import { OwnerPageLayout } from "../components/organisms/OwnerPageLayout";
 import { AdminPageLayout } from "../components/organisms/AdminPageLayout";
+import { OwnerIndexPage } from "../pages/owner";
 
 export const router = createBrowserRouter([
     {
@@ -43,7 +44,7 @@ export const router = createBrowserRouter([
         children: [
             {
                 path: "/owner",
-                element: <ProductsIndexPage />,
+                element: <OwnerIndexPage />,
             },
             {
                 path: "/owner/products",

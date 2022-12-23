@@ -4,7 +4,7 @@ import { LoginForm } from "../../components/organisms/LoginForm";
 export const LoginOwnerPage = () => {
     return (
         <div>
-            <GuestPageLayout>
+            <GuestPageLayout guestType="owner">
                 <div style={{ maxWidth: "600px", margin: "auto" }}>
                     <h3 className="pb-4 pt-4 text-center">
                         店舗管理者ログイン
