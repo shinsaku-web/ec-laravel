@@ -1,11 +1,11 @@
 import { Container, Nav, Navbar, NavDropdown, Stack } from "react-bootstrap";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { BiUser } from "react-icons/bi";
 import { useLogout } from "../../hooks/useLogout";
 
-export const NavOwner = () => {
-    const { handleLogout } = useLogout("owner");
-    const navigate = useNavigate();
+export const NavAdmin = () => {
+    const { handleLogout } = useLogout("admin");
+
     return (
         <Navbar className="p-4" bg="light" expand="lg">
             <Container>
@@ -14,11 +14,11 @@ export const NavOwner = () => {
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="ms-auto pe-4">
                         <Stack direction="horizontal" gap={4}>
-                            <Link to="/owner/shops">店舗管理</Link>
+                            <Link to="/admin/owners-list">オーナー一覧</Link>
 
-                            <Link to="/owner/images">画像管理</Link>
+                            <Link to="/admin/create-owner">オーナー登録</Link>
 
-                            <Link to="/owner/products">商品管理</Link>
+                            <Link to="/admin/delete-owner">オーナー削除</Link>
 
                             <NavDropdown
                                 title={<BiUser />}
@@ -26,9 +26,9 @@ export const NavOwner = () => {
                                 className="pe-4"
                             >
                                 <NavDropdown.Item
-                                    onClick={() => navigate("/owner")}
+                                    onClick={() => console.log("click")}
                                 >
-                                    オーナー設定
+                                    ユーザー設定
                                 </NavDropdown.Item>
                                 <NavDropdown.Item onClick={handleLogout}>
                                     ログアウト

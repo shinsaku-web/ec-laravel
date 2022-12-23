@@ -1,13 +1,13 @@
 import { useState, useEffect } from "react";
 import { Container } from "react-bootstrap";
+import Loading from "react-loading";
 import { Outlet, useNavigate } from "react-router-dom";
 import { useAuth } from "../../hooks/useAuth";
-import { NavOwner } from "../molecules/NavOwner";
-import { Loading } from "./Loading";
+import { NavAdmin } from "../molecules/NavAdmin";
 
-export const OwnerPageLayout = () => {
+export const AdminPageLayout = () => {
     const [isLoading, setIsLoading] = useState(true);
-    const { id, name } = useAuth("owner");
+    const { id, name } = useAuth("admin");
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -22,12 +22,11 @@ export const OwnerPageLayout = () => {
     }
 
     if (id === null) {
-        navigate("/owner/login");
+        navigate("/admin/login");
     }
-
     return (
         <div>
-            <NavOwner />
+            <NavAdmin />
             <Container className="py-4">
                 <Outlet />
             </Container>

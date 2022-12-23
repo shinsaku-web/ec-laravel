@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Button, Row, Col } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import { useAuth } from "../../hooks/useAuth";
 import { CardPrimary } from "../molecules/CardPrimary";
 import { GuestPageLayout } from "../organisms/GuestPageLayout";
@@ -8,7 +9,7 @@ import { UserPageLayout } from "../organisms/UserPageLayout";
 
 export const TopPageTemplate = () => {
     const [isLoading, setIsLoading] = useState(true);
-    const { id, name } = useAuth();
+    const { id, name } = useAuth("user");
 
     useEffect(() => {
         const timerID = setTimeout(() => {
@@ -23,7 +24,7 @@ export const TopPageTemplate = () => {
 
     if (id === null) {
         return (
-            <GuestPageLayout>
+            <GuestPageLayout guestType="user">
                 <div
                     className="p-4"
                     style={{
@@ -55,6 +56,9 @@ export const TopPageTemplate = () => {
                             </Button>
                         </Col>
                     </Row>
+                    <p>
+                        <Link to={"/owner"}>店舗オーナーの方はこちら</Link>
+                    </p>
                 </div>
             </GuestPageLayout>
         );

@@ -7,7 +7,7 @@ export const LoginUserPage = () => {
             <GuestPageLayout>
                 <div style={{ maxWidth: "600px", margin: "auto" }}>
                     <h3 className="pb-4 pt-4 text-center">ログイン</h3>
-                    <LoginForm />
+                    <LoginForm userType="user" />
                 </div>
             </GuestPageLayout>
         </div>

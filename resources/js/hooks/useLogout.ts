@@ -1,9 +1,10 @@
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { ApiClient } from "../apis/ApiClient";
-import { login } from "../features/user/userSlice";
+import { USER_TYPE } from "../constants/userTypes";
+import { userAuth } from "../features/user/userSlice";
 
-export const useLogout = () => {
+export const useLogout = (userType: USER_TYPE) => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
@@ -11,9 +12,9 @@ export const useLogout = () => {
         if (!confirm("ログアウトしますか？")) {
             return;
         }
-        const { status } = await ApiClient.post("/api/user/logout");
+        const { status } = await ApiClient.post(`/api/${userType}/logout`);
         if (status === 200) {
-            dispatch(login({ id: null, name: null }));
+            dispatch(userAuth({ id: null, name: null }));
             navigate("/");
         }
     };

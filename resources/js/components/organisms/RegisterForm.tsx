@@ -1,8 +1,13 @@
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
+import { USER_TYPE } from "../../constants/userTypes";
 import { useRegister } from "../../hooks/useRegister";
 
-export const RegisterForm = () => {
+interface Props {
+    userType: USER_TYPE;
+}
+
+export const RegisterForm = ({ userType }: Props) => {
     const {
         inputName,
         inputEmail,
@@ -14,7 +19,7 @@ export const RegisterForm = () => {
         setInputPassword,
         setInputPassword2,
         handleLogin,
-    } = useRegister();
+    } = useRegister(userType);
     return (
         <Form
             style={{
