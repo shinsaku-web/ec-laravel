@@ -1,10 +1,11 @@
 import { Container, Nav, Navbar, NavDropdown, Stack } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { BiUser } from "react-icons/bi";
 import { useLogout } from "../../hooks/useLogout";
 
 export const NavOwner = () => {
     const { handleLogout } = useLogout("owner");
+    const navigate = useNavigate();
     return (
         <Navbar className="p-4" bg="light" expand="lg">
             <Container>
@@ -25,9 +26,9 @@ export const NavOwner = () => {
                                 className="pe-4"
                             >
                                 <NavDropdown.Item
-                                    onClick={() => console.log("click")}
+                                    onClick={() => navigate("/owner")}
                                 >
-                                    ユーザー設定
+                                    オーナー設定
                                 </NavDropdown.Item>
                                 <NavDropdown.Item onClick={handleLogout}>
                                     ログアウト
