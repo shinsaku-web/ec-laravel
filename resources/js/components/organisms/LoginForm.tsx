@@ -1,3 +1,4 @@
+import { Alert } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { USER_TYPE } from "../../constants/userTypes";
@@ -26,9 +27,9 @@ export const LoginForm = ({ userType }: Props) => {
             onSubmit={(e) => handleLogin(e)}
         >
             {error && (
-                <p style={{ color: "red", fontWeight: "bold" }}>
+                <Alert style={{ fontWeight: "bold" }} variant="danger">
                     Something is Wrong !
-                </p>
+                </Alert>
             )}
             <Form.Group className="mb-3" controlId="formBasicEmail">
                 <Form.Label>Email address</Form.Label>
