@@ -1,8 +1,10 @@
 <?php
 
 use App\Http\Controllers\Auth\Admin\LoginController as AdminLoginController;
+use App\Http\Controllers\Auth\Admin\LogoutController as AdminLogoutController;
 use App\Http\Controllers\Auth\Admin\RegisterController as AdminRegisterController;
 use App\Http\Controllers\Auth\Owner\LoginController as OwnerLoginController;
+use App\Http\Controllers\Auth\Owner\LogoutController as OwnerLogoutController;
 use App\Http\Controllers\Auth\Owner\RegisterController as OwnerRegisterController;
 use App\Http\Controllers\Auth\User\LoginController;
 use App\Http\Controllers\Auth\User\LogoutController;
@@ -47,6 +49,7 @@ Route::middleware('auth:owners')->prefix("owner")->group(function () {
     Route::get("/", function (Request $request) {
         return auth("owners")->user();
     });
+    Route::post('/logout', [OwnerLogoutController::class, "logout"]);
 });
 
 // 認証済み管理者が使用するapi
@@ -54,4 +57,5 @@ Route::middleware('auth:admin')->prefix("admin")->group(function () {
     Route::get("/", function (Request $request) {
         return auth("admin")->user();
     });
+    Route::post('/logout', [AdminLogoutController::class, "logout"]);
 });
