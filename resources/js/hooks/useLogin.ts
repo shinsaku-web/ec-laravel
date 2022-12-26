@@ -3,6 +3,8 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { ApiClient } from "../apis/ApiClient";
 import { USER_TYPE } from "../constants/userTypes";
+import { adminAuth } from "../features/admin/adminSlice";
+import { ownerAuth } from "../features/owner/ownerSlice";
 import { userAuth } from "../features/user/userSlice";
 
 export const useLogin = (userType: USER_TYPE) => {
@@ -32,9 +34,23 @@ export const useLogin = (userType: USER_TYPE) => {
                     data: { id, name },
                 } = await ApiClient.get(`/api/${userType}`);
 
-                dispatch(userAuth({ id, name }));
+                switch (userType) {
+                    case "user":
+                        dispatch(userAuth({ id, name }));
+                        navigate("/");
+                        break;
+                    case "owner":
+                        dispatch(ownerAuth({ id, name }));
+                        navigate("/owner");
+                        break;
+                    case "admin":
+                        dispatch(adminAuth({ id, name }));
+                        navigate("/admin");
+                        break;
 
-                navigate("/");
+                    default:
+                        throw new Error("認証に失敗しました。");
+                }
             } else {
                 throw new Error("認証に失敗しました。");
             }
