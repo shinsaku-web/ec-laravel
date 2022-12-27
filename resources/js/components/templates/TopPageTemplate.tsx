@@ -9,7 +9,9 @@ import { UserPageLayout } from "../organisms/UserPageLayout";
 
 export const TopPageTemplate = () => {
     const [isLoading, setIsLoading] = useState(true);
-    const { id, name } = useAuth("user");
+    const {
+        user: { id, name },
+    } = useAuth("user");
 
     useEffect(() => {
         const timerID = setTimeout(() => {

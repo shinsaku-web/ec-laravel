@@ -7,7 +7,9 @@ import { Loading } from "./Loading";
 
 export const OwnerPageLayout = () => {
     const [isLoading, setIsLoading] = useState(true);
-    const { id, name } = useAuth("owner");
+    const {
+        owner: { id, name },
+    } = useAuth("owner");
     const navigate = useNavigate();
 
     useEffect(() => {
