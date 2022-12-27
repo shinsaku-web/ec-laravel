@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import { Container } from "react-bootstrap";
-import Loading from "react-loading";
 import { Outlet, useNavigate } from "react-router-dom";
 import { useAuth } from "../../hooks/useAuth";
 import { NavAdmin } from "../molecules/NavAdmin";
+import { Loading } from "./Loading";
 
 export const AdminPageLayout = () => {
     const [isLoading, setIsLoading] = useState(true);

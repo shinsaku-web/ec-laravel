@@ -12,6 +12,8 @@ export const Loading = () => {
         >
             <div>
                 <Spinner animation="grow" variant="primary" />
+                <Spinner animation="grow" variant="primary" />
+                <Spinner animation="grow" variant="primary" />
                 <p className="text-center mt-3">読み込み中...</p>
             </div>
         </section>
