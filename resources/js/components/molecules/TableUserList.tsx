@@ -1,17 +1,9 @@
 import { Button } from "react-bootstrap";
 import Table from "react-bootstrap/Table";
 import { useNavigate } from "react-router-dom";
+import { UserInfo } from "../../types/user";
 
-interface Props {
-    users: {
-        id: number;
-        name: string;
-        email: string;
-        created: string;
-    }[];
-}
-
-export const TablePrimary = ({ users }: Props) => {
+export const TableUserList = ({ users }: { users: UserInfo[] }) => {
     const navigate = useNavigate();
     return (
         <Table striped bordered>
@@ -35,7 +27,7 @@ export const TablePrimary = ({ users }: Props) => {
                         <td width={100} className="text-center">
                             <Button
                                 onClick={() =>
-                                    navigate(`/admin/update-owner/${1}`)
+                                    navigate(`/admin/update-owner/${user.id}`)
                                 }
                                 variant="outline-primary"
                             >
