@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\OwnerController;
 use App\Http\Controllers\Auth\Admin\LoginController as AdminLoginController;
 use App\Http\Controllers\Auth\Admin\LogoutController as AdminLogoutController;
 use App\Http\Controllers\Auth\Admin\RegisterController as AdminRegisterController;
@@ -57,5 +58,11 @@ Route::middleware('auth:admin')->prefix("admin")->group(function () {
     Route::get("/", function (Request $request) {
         return auth("admin")->user();
     });
+    // ------------オーナーCRUD処理
+    Route::get("/owners", [OwnerController::class, "index"]);
+    Route::post("/owners", [OwnerController::class, "store"]);
+    Route::post("/owners/update", [OwnerController::class, "update"]);
+    Route::post("/owners/delete", [OwnerController::class, "delete"]);
+    // ------------オーナーCRUD処理
     Route::post('/logout', [AdminLogoutController::class, "logout"]);
 });

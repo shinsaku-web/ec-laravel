@@ -5,6 +5,12 @@ export interface User {
     name: string | null;
 }
 
+export interface UserInfo {
+    id: number | null;
+    name: string | null;
+    email: string | null;
+}
+
 export type Auth = {
     [key in USER_TYPE]: User;
 };

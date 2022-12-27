@@ -2,7 +2,16 @@ import { Button } from "react-bootstrap";
 import Table from "react-bootstrap/Table";
 import { useNavigate } from "react-router-dom";
 
-export const TablePrimary = () => {
+interface Props {
+    users: {
+        id: number;
+        name: string;
+        email: string;
+        created: string;
+    }[];
+}
+
+export const TablePrimary = ({ users }: Props) => {
     const navigate = useNavigate();
     return (
         <Table striped bordered>
@@ -17,12 +26,12 @@ export const TablePrimary = () => {
                 </tr>
             </thead>
             <tbody>
-                {Array.from({ length: 5 }).map((_, i) => (
-                    <tr key={i}>
-                        <td>{i}</td>
-                        <td>Mark</td>
-                        <td>test@test.com</td>
-                        <td>4ヶ月前</td>
+                {users.map((user) => (
+                    <tr key={user.id}>
+                        <td>{user.id}</td>
+                        <td>{user.name}</td>
+                        <td>{user.email}</td>
+                        <td>{user.created}</td>
                         <td width={100} className="text-center">
                             <Button
                                 onClick={() =>
