@@ -59,6 +59,9 @@ export const TopPageTemplate = () => {
                     <p>
                         <Link to={"/owner"}>店舗オーナーの方はこちら</Link>
                     </p>
+                    <p>
+                        <Link to={"/admin"}>管理者の方はこちら</Link>
+                    </p>
                 </div>
             </GuestPageLayout>
         );

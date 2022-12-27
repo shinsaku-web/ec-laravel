@@ -7,7 +7,7 @@ import { NavAdmin } from "../molecules/NavAdmin";
 
 export const AdminPageLayout = () => {
     const [isLoading, setIsLoading] = useState(true);
-    const { id, name } = useAuth("admin");
+    const { id } = useAuth("admin");
     const navigate = useNavigate();
 
     useEffect(() => {

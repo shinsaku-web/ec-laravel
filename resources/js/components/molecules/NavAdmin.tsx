@@ -14,11 +14,9 @@ export const NavAdmin = () => {
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="ms-auto pe-4">
                         <Stack direction="horizontal" gap={4}>
-                            <Link to="/admin/owners-list">オーナー一覧</Link>
+                            <Link to="/admin">オーナー一覧</Link>
 
                             <Link to="/admin/create-owner">オーナー登録</Link>
-
-                            <Link to="/admin/delete-owner">オーナー削除</Link>
 
                             <NavDropdown
                                 title={<BiUser />}
@@ -28,7 +26,7 @@ export const NavAdmin = () => {
                                 <NavDropdown.Item
                                     onClick={() => console.log("click")}
                                 >
-                                    ユーザー設定
+                                    設定
                                 </NavDropdown.Item>
                                 <NavDropdown.Item onClick={handleLogout}>
                                     ログアウト

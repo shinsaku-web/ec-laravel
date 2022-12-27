@@ -15,7 +15,7 @@ class LoginController extends Controller
             "email" => "required | email",
             "password" => "required",
         ]);
-        if (Auth::guard('users')->attempt($credentials)) {
+        if (Auth::guard('admin')->attempt($credentials)) {
             $request->session()->regenerate();
             return response()->json(["message" => "Login Success!!"], Response::HTTP_OK);
         }
