@@ -6,11 +6,7 @@ import { USER_TYPE } from "../constants/userTypes";
 import { adminAuth } from "../features/admin/adminSlice";
 import { ownerAuth } from "../features/owner/ownerSlice";
 import { userAuth } from "../features/user/userSlice";
-import { User } from "../types/user";
-
-type Auth = {
-    [key in USER_TYPE]: User;
-};
+import { Auth } from "../types/user";
 
 /**
  * ログイン処理

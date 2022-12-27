@@ -14,6 +14,8 @@ import { AdminPageLayout } from "../components/organisms/AdminPageLayout";
 import { OwnerIndexPage } from "../pages/owner";
 import { LoginAdminPage } from "../pages/admin/login";
 import { AdminIndexPage } from "../pages/admin";
+import { CreateOwner } from "../pages/admin/createOwner";
+import { UpdateOwner } from "../pages/admin/updateOwner";
 
 export const router = createBrowserRouter([
     {
@@ -80,11 +82,11 @@ export const router = createBrowserRouter([
             },
             {
                 path: "/admin/create-owner",
-                element: "オーナー登録",
+                element: <CreateOwner />,
             },
             {
-                path: "/admin/update-owner",
-                element: "オーナー編集",
+                path: "/admin/update-owner/:id",
+                element: <UpdateOwner />,
             },
         ],
     },
