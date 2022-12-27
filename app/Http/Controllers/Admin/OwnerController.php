@@ -62,6 +62,7 @@ class OwnerController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $deleted = Owner::findOrFail($id)->delete();
+        return $deleted;
     }
 }

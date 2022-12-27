@@ -61,8 +61,8 @@ Route::middleware('auth:admin')->prefix("admin")->group(function () {
     // ------------オーナーCRUD処理
     Route::get("/owners", [OwnerController::class, "index"]);
     Route::post("/owners", [OwnerController::class, "store"]);
-    Route::post("/owners/update", [OwnerController::class, "update"]);
-    Route::post("/owners/delete", [OwnerController::class, "delete"]);
-    // ------------オーナーCRUD処理
+    Route::put("/owners/update", [OwnerController::class, "update"]);
+    Route::delete("/owners/delete/{id}", [OwnerController::class, "destroy"]);
+    // ------------オーナーCRUD処理ここまで
     Route::post('/logout', [AdminLogoutController::class, "logout"]);
 });

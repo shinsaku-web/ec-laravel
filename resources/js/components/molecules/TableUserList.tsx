@@ -3,8 +3,18 @@ import Table from "react-bootstrap/Table";
 import { useNavigate } from "react-router-dom";
 import { UserInfo } from "../../types/user";
 
-export const TableUserList = ({ users }: { users: UserInfo[] }) => {
+interface Props {
+    users: UserInfo[];
+    handleDelete: (id: number) => void;
+}
+
+export const TableUserList = ({ users, handleDelete }: Props) => {
     const navigate = useNavigate();
+    const handleClickDelete = (id: number | null) => {
+        if (id) {
+            handleDelete(id);
+        }
+    };
     return (
         <Table striped bordered>
             <thead>
@@ -35,7 +45,12 @@ export const TableUserList = ({ users }: { users: UserInfo[] }) => {
                             </Button>
                         </td>
                         <td width={100} className="text-center">
-                            <Button variant="danger">削除</Button>
+                            <Button
+                                onClick={() => handleClickDelete(user.id)}
+                                variant="danger"
+                            >
+                                削除
+                            </Button>
                         </td>
                     </tr>
                 ))}
