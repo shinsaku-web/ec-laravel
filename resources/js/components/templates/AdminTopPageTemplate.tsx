@@ -3,6 +3,7 @@ import { TableUserList } from "../molecules/TableUserList";
 
 export const AdminTopPageTemplate = () => {
     const { owners } = useOwner();
+    console.log(owners);
 
     return (
         <div>

@@ -23,7 +23,7 @@ export const TableUserList = ({ users }: { users: UserInfo[] }) => {
                         <td>{user.id}</td>
                         <td>{user.name}</td>
                         <td>{user.email}</td>
-                        <td>{user.created}</td>
+                        <td>{user.created_at}</td>
                         <td width={100} className="text-center">
                             <Button
                                 onClick={() =>

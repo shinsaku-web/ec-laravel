@@ -9,7 +9,7 @@ export interface UserInfo {
     id: number | null;
     name: string | null;
     email: string | null;
-    created: string | null;
+    created_at: string | null;
 }
 
 export type Auth = {

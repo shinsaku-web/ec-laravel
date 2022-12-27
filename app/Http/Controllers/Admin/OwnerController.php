@@ -15,7 +15,8 @@ class OwnerController extends Controller
      */
     public function index()
     {
-        $owners =  Owner::all();
+        // TODO:日時の変換
+        $owners =  Owner::all(['id', 'name', "email", "created_at"]);
         return response()->json($owners);
     }
 
