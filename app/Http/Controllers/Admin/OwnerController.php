@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Owner;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class OwnerController extends Controller
 {
@@ -39,7 +40,8 @@ class OwnerController extends Controller
      */
     public function show($id)
     {
-        //
+        $owner = Owner::findOrFail($id);
+        return $owner;
     }
 
     /**
@@ -51,7 +53,11 @@ class OwnerController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        Owner::where('id', $id)->update([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password)
+        ]);
     }
 
     /**
