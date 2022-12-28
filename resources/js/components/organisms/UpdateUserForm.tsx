@@ -25,7 +25,7 @@ export const UpdateUserForm = ({
         setInputEmail,
         setInputPassword,
         setInputPassword2,
-        handleLogin,
+        handleUpdate,
     } = useUserUpdate(userType, defaultName, defaultEmail);
     return (
         <Form
@@ -34,7 +34,7 @@ export const UpdateUserForm = ({
                 padding: "24px",
                 borderRadius: "8px",
             }}
-            onSubmit={(e) => handleLogin(e)}
+            onSubmit={(e) => handleUpdate(e)}
         >
             {error && (
                 <Alert style={{ fontWeight: "bold" }} variant="danger">

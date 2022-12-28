@@ -1,19 +1,15 @@
-import { useEffect, useState } from "react";
-import { ApiClient } from "../../apis/ApiClient";
+import { Button } from "react-bootstrap";
+import { useNavigate, useParams } from "react-router-dom";
 import { UpdateUserForm } from "../../components/organisms/UpdateUserForm";
+import { useOwner } from "../../hooks/useOwner";
 
 export const UpdateOwner = () => {
-    const [owner, setOwner] = useState(null);
-    useEffect(() => {
-        (async () => {
-            try {
-                const { data } = await ApiClient("/api/admin/owners/1");
-                setOwner(data);
-            } catch (error) {
-                setOwner(null);
-            }
-        })();
-    }, []);
+    const navigate = useNavigate();
+    const { id } = useParams();
+    if (id === undefined) {
+        return <p className="text-center">オーナーが存在しません</p>;
+    }
+    const { owner } = useOwner(parseInt(id));
 
     if (!owner) {
         return <p className="text-center">オーナーが存在しません</p>;
@@ -31,6 +27,10 @@ export const UpdateOwner = () => {
                 defaultEmail={owner.email}
                 defaultName={owner.name}
             />
+            <div style={{ padding: 20 }} />
+            <Button onClick={() => navigate("/admin")} variant="info">
+                戻る
+            </Button>
         </div>
     );
 };

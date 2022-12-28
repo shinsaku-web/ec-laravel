@@ -20,7 +20,7 @@ export const useUserUpdate = (
         [userType]: { id },
     } = useSelector((state: Auth) => state);
 
-    const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
+    const handleUpdate = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         try {
             const { status } = await ApiClient.post(`/api/${userType}/${id}`, {
@@ -63,6 +63,6 @@ export const useUserUpdate = (
         setInputEmail,
         setInputPassword,
         setInputPassword2,
-        handleLogin,
+        handleUpdate,
     };
 };

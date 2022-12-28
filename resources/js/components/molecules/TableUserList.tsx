@@ -10,11 +10,6 @@ interface Props {
 
 export const TableUserList = ({ users, handleDelete }: Props) => {
     const navigate = useNavigate();
-    const handleClickDelete = (id: number | null) => {
-        if (id) {
-            handleDelete(id);
-        }
-    };
     return (
         <Table striped bordered>
             <thead>
@@ -46,7 +41,7 @@ export const TableUserList = ({ users, handleDelete }: Props) => {
                         </td>
                         <td width={100} className="text-center">
                             <Button
-                                onClick={() => handleClickDelete(user.id)}
+                                onClick={() => handleDelete(user.id)}
                                 variant="danger"
                             >
                                 削除

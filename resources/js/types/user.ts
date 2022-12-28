@@ -1,15 +1,15 @@
 import { USER_TYPE } from "../constants/userTypes";
 
 export interface User {
-    id: number | null;
-    name: string | null;
+    id: number;
+    name: string;
 }
 
 export interface UserInfo {
-    id: number | null;
-    name: string | null;
-    email: string | null;
-    created_at: string | null;
+    id: number;
+    name: string;
+    email: string;
+    created_at: string;
 }
 
 export type Auth = {
