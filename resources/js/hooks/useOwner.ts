@@ -1,10 +1,8 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { ApiClient } from "../apis/ApiClient";
 import { UserInfo } from "../types/user";
 
 export const useOwner = (id?: number) => {
-    const navigate = useNavigate();
     // ------------index
     const [owners, setOwners] = useState<UserInfo[] | []>([]);
     const fetchOwners = async () => {
@@ -14,28 +12,8 @@ export const useOwner = (id?: number) => {
         setOwners([...data]);
     };
 
-    useEffect(() => {
-        (async () => {
-            fetchOwners();
-        })();
-    }, []);
-
     // -------------show
     const [owner, setOwner] = useState<UserInfo | null>(null);
-    useEffect(() => {
-        (async () => {
-            try {
-                if (id === undefined) {
-                    throw new Error("id未指定");
-                }
-                const { data } = await ApiClient("/api/admin/owners/" + id);
-                setOwner(data);
-                fetchOwners();
-            } catch (error) {
-                setOwner(null);
-            }
-        })();
-    }, []);
 
     // ------------delete
     const handleDelete = (id: number) => {
@@ -60,5 +38,23 @@ export const useOwner = (id?: number) => {
             }
         })();
     };
+
+    // ---------- side Effect
+    useEffect(() => {
+        (async () => {
+            fetchOwners();
+
+            try {
+                if (id === undefined) {
+                    throw new Error("id未指定");
+                }
+                const { data } = await ApiClient("/api/admin/owners/" + id);
+                setOwner(data);
+                fetchOwners();
+            } catch (error) {
+                setOwner(null);
+            }
+        })();
+    }, []);
     return { owners, owner, handleDelete };
 };
