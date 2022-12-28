@@ -11,6 +11,11 @@ class Owner extends Authenticatable
 {
     use HasFactory, SoftDeletes;
 
+    public function shop()
+    {
+        return $this->hasOne(Shop::class);
+    }
+
 
     /**
      * The attributes that are mass assignable.
