@@ -9,7 +9,7 @@ export const UpdateOwner = () => {
     if (id === undefined) {
         return <p className="text-center">オーナーが存在しません</p>;
     }
-    const { owner } = useOwner(parseInt(id));
+    const { owner, handleUpdate } = useOwner(parseInt(id));
 
     if (!owner) {
         return <p className="text-center">オーナーが存在しません</p>;
@@ -26,6 +26,7 @@ export const UpdateOwner = () => {
                 userType="owner"
                 defaultEmail={owner.email}
                 defaultName={owner.name}
+                userUpdate={handleUpdate}
             />
             <div style={{ padding: 20 }} />
             <Button onClick={() => navigate("/admin")} variant="info">

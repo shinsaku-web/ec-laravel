@@ -3,17 +3,20 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { USER_TYPE } from "../../constants/userTypes";
 import { useUserUpdate } from "../../hooks/useUserUpdate";
+import { User } from "../../types/user";
 
 interface Props {
     userType: USER_TYPE;
     defaultName: string;
     defaultEmail: string;
+    userUpdate: (user: Omit<User, "created_at">) => void;
 }
 
 export const UpdateUserForm = ({
     userType,
     defaultName,
     defaultEmail,
+    userUpdate,
 }: Props) => {
     const {
         inputName,
@@ -26,7 +29,7 @@ export const UpdateUserForm = ({
         setInputPassword,
         setInputPassword2,
         handleUpdate,
-    } = useUserUpdate(userType, defaultName, defaultEmail);
+    } = useUserUpdate(userType, defaultName, defaultEmail, userUpdate);
     return (
         <Form
             style={{
@@ -34,7 +37,10 @@ export const UpdateUserForm = ({
                 padding: "24px",
                 borderRadius: "8px",
             }}
-            onSubmit={(e) => handleUpdate(e)}
+            onSubmit={(e) => {
+                e.preventDefault();
+                handleUpdate();
+            }}
         >
             {error && (
                 <Alert style={{ fontWeight: "bold" }} variant="danger">
