@@ -21,7 +21,21 @@ export const useRegister = (userType: USER_TYPE) => {
                 password2: inputPassword2,
             });
             if (status === 200) {
-                navigate("/login");
+                switch (userType) {
+                    case "user":
+                        navigate(`/login`);
+                        break;
+                    case "owner":
+                        navigate(`/${userType}/login`);
+                        break;
+
+                    case "admin":
+                        navigate(`/${userType}/login`);
+                        break;
+
+                    default:
+                        throw new Error("登録に失敗しました");
+                }
             } else {
                 throw new Error("登録に失敗しました。");
             }

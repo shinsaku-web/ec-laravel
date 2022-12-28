@@ -2,13 +2,22 @@ import { Alert } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { USER_TYPE } from "../../constants/userTypes";
-import { useRegister } from "../../hooks/useRegister";
+import { useUserUpdate } from "../../hooks/useUserUpdate";
+import { User } from "../../types/user";
 
 interface Props {
     userType: USER_TYPE;
+    defaultName: string;
+    defaultEmail: string;
+    userUpdate: (user: Omit<User, "created_at">) => void;
 }
 
-export const RegisterForm = ({ userType }: Props) => {
+export const UpdateUserForm = ({
+    userType,
+    defaultName,
+    defaultEmail,
+    userUpdate,
+}: Props) => {
     const {
         inputName,
         inputEmail,
@@ -19,8 +28,8 @@ export const RegisterForm = ({ userType }: Props) => {
         setInputEmail,
         setInputPassword,
         setInputPassword2,
-        handleLogin,
-    } = useRegister(userType);
+        handleUpdate,
+    } = useUserUpdate(userType, defaultName, defaultEmail, userUpdate);
     return (
         <Form
             style={{
@@ -28,7 +37,10 @@ export const RegisterForm = ({ userType }: Props) => {
                 padding: "24px",
                 borderRadius: "8px",
             }}
-            onSubmit={(e) => handleLogin(e)}
+            onSubmit={(e) => {
+                e.preventDefault();
+                handleUpdate();
+            }}
         >
             {error && (
                 <Alert style={{ fontWeight: "bold" }} variant="danger">
@@ -73,10 +85,9 @@ export const RegisterForm = ({ userType }: Props) => {
                     onChange={(e) => setInputPassword2(e.currentTarget.value)}
                 />
             </Form.Group>
-            {/* forgot password入れる? */}
             <div className="d-grid pt-2">
                 <Button variant="primary" type="submit">
-                    登録する
+                    変更する
                 </Button>
             </div>
         </Form>

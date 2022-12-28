@@ -12,15 +12,15 @@ import { LoginOwnerPage } from "../pages/owner/login";
 import { OwnerPageLayout } from "../components/organisms/OwnerPageLayout";
 import { AdminPageLayout } from "../components/organisms/AdminPageLayout";
 import { OwnerIndexPage } from "../pages/owner";
+import { LoginAdminPage } from "../pages/admin/login";
+import { AdminIndexPage } from "../pages/admin";
+import { CreateOwner } from "../pages/admin/createOwner";
+import { UpdateOwner } from "../pages/admin/updateOwner";
 
 export const router = createBrowserRouter([
     {
         path: "/",
         element: <IndexPage />,
-    },
-    {
-        path: "/owner/login",
-        element: <LoginOwnerPage />,
     },
     {
         path: "/product/:id",
@@ -37,6 +37,14 @@ export const router = createBrowserRouter([
     {
         path: "/login",
         element: <LoginUserPage />,
+    },
+    {
+        path: "/owner/login",
+        element: <LoginOwnerPage />,
+    },
+    {
+        path: "/admin/login",
+        element: <LoginAdminPage />,
     },
     {
         path: "/owner",
@@ -69,16 +77,16 @@ export const router = createBrowserRouter([
         element: <AdminPageLayout />,
         children: [
             {
-                path: "/admin/owners-list",
+                path: "/admin",
+                element: <AdminIndexPage />,
             },
             {
                 path: "/admin/create-owner",
+                element: <CreateOwner />,
             },
             {
-                path: "/admin/update-owner",
-            },
-            {
-                path: "/admin/delete-owner",
+                path: "/admin/update-owner/:id",
+                element: <UpdateOwner />,
             },
         ],
     },

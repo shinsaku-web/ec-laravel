@@ -1,4 +1,4 @@
-import ReactLoading from "react-loading";
+import { Spinner } from "react-bootstrap";
 
 export const Loading = () => {
     return (
@@ -11,13 +11,9 @@ export const Loading = () => {
             }}
         >
             <div>
-                <ReactLoading
-                    type="spin"
-                    color="#0072BC"
-                    height="100px"
-                    width="100px"
-                    className="mx-auto"
-                />
+                <Spinner animation="grow" variant="primary" />
+                <Spinner animation="grow" variant="primary" />
+                <Spinner animation="grow" variant="primary" />
                 <p className="text-center mt-3">読み込み中...</p>
             </div>
         </section>

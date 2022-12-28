@@ -9,7 +9,9 @@ import { UserPageLayout } from "../organisms/UserPageLayout";
 
 export const TopPageTemplate = () => {
     const [isLoading, setIsLoading] = useState(true);
-    const { id, name } = useAuth("user");
+    const {
+        user: { id, name },
+    } = useAuth("user");
 
     useEffect(() => {
         const timerID = setTimeout(() => {
@@ -58,6 +60,9 @@ export const TopPageTemplate = () => {
                     </Row>
                     <p>
                         <Link to={"/owner"}>店舗オーナーの方はこちら</Link>
+                    </p>
+                    <p>
+                        <Link to={"/admin"}>管理者の方はこちら</Link>
                     </p>
                 </div>
             </GuestPageLayout>
