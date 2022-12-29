@@ -13,4 +13,12 @@ class Shop extends Model
     {
         return $this->belongsTo(Owner::class);
     }
+
+    protected $fillable = [
+        'owner_id',
+        'name',
+        'information',
+        'filename',
+        'is_selling',
+    ];
 }
