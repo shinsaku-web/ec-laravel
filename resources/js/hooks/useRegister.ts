@@ -11,10 +11,22 @@ export const useRegister = (userType: USER_TYPE) => {
     const [error, setError] = useState(false);
     const navigate = useNavigate();
 
-    const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
+    const handleRegister = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         try {
-            const { status } = await ApiClient.post(`/api/${userType}`, {
+            const getUrl = (userType: string) => {
+                switch (userType) {
+                    case "user":
+                        return `/api/${userType}`;
+                    case "owner":
+                        return `/api/admin/owners`;
+                    case "admin":
+                        return `/api/${userType}`;
+                    default:
+                        return "/";
+                }
+            };
+            const { status } = await ApiClient.post(getUrl(userType), {
                 name: inputName,
                 email: inputEmail,
                 password: inputPassword,
@@ -26,7 +38,7 @@ export const useRegister = (userType: USER_TYPE) => {
                         navigate(`/login`);
                         break;
                     case "owner":
-                        navigate(`/${userType}/login`);
+                        navigate(`/admin`);
                         break;
 
                     case "admin":
@@ -54,6 +66,6 @@ export const useRegister = (userType: USER_TYPE) => {
         setInputEmail,
         setInputPassword,
         setInputPassword2,
-        handleLogin,
+        handleRegister,
     };
 };

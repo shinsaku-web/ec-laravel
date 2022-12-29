@@ -19,7 +19,7 @@ export const RegisterForm = ({ userType }: Props) => {
         setInputEmail,
         setInputPassword,
         setInputPassword2,
-        handleLogin,
+        handleRegister,
     } = useRegister(userType);
     return (
         <Form
@@ -28,7 +28,7 @@ export const RegisterForm = ({ userType }: Props) => {
                 padding: "24px",
                 borderRadius: "8px",
             }}
-            onSubmit={(e) => handleLogin(e)}
+            onSubmit={(e) => handleRegister(e)}
         >
             {error && (
                 <Alert style={{ fontWeight: "bold" }} variant="danger">

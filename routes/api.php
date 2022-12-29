@@ -6,7 +6,6 @@ use App\Http\Controllers\Auth\Admin\LogoutController as AdminLogoutController;
 use App\Http\Controllers\Auth\Admin\RegisterController as AdminRegisterController;
 use App\Http\Controllers\Auth\Owner\LoginController as OwnerLoginController;
 use App\Http\Controllers\Auth\Owner\LogoutController as OwnerLogoutController;
-use App\Http\Controllers\Auth\Owner\RegisterController as OwnerRegisterController;
 use App\Http\Controllers\Auth\User\LoginController;
 use App\Http\Controllers\Auth\User\LogoutController;
 use App\Http\Controllers\Auth\User\RegisterController;
@@ -24,16 +23,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// ユーザー登録
 Route::post('/user', [RegisterController::class, "register"]);
-Route::post('/user/login', [LoginController::class, "login"]);
+Route::post('/admin', [AdminRegisterController::class, "register"]);
 
-Route::post('/owner', [OwnerRegisterController::class, "register"]);
+// ログイン
+Route::post('/user/login', [LoginController::class, "login"]);
 Route::post(
     '/owner/login',
     [OwnerLoginController::class, "login"]
 );
-
-Route::post('/admin', [AdminRegisterController::class, "register"]);
 Route::post('/admin/login', [AdminLoginController::class, "login"]);
 
 

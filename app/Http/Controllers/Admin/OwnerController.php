@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Owner;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 
 class OwnerController extends Controller
 {
@@ -29,7 +31,27 @@ class OwnerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            "name" => 'required',
+            'email' => "required | email | unique:users",
+            "password" => "required | same:password2",
+            "password2" => "required",
+        ]);
+        if ($validator->fails()) {
+            return response()->json($validator->messages(), Response::HTTP_UNPROCESSABLE_ENTITY);
+        }
+
+        $user = Owner::create([
+            "name" => $request->name,
+            "email" => $request->email,
+            "password" => Hash::make($request->password),
+        ]);
+        $json = [
+            'data' => $user,
+            'message' => 'Owner registration success!',
+            'error' => ''
+        ];
+        return response()->json($json, Response::HTTP_OK);
     }
 
     /**
