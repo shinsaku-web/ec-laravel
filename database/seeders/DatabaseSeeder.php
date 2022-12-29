@@ -30,5 +30,9 @@ class DatabaseSeeder extends Seeder
             'name' => 'test',
             'email' => 'test@example.com',
         ]);
+
+        $this->call([
+            ShopSeeder::class,
+        ]);
     }
 }
