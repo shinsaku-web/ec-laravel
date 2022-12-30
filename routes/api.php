@@ -52,6 +52,7 @@ Route::middleware('auth:owners')->prefix("owner")->group(function () {
     });
     Route::post('/logout', [OwnerLogoutController::class, "logout"]);
     Route::get("/shop", [ShopController::class, "index"]);
+    Route::get("/shop/{shop}", [ShopController::class, "edit"]);
 });
 
 // 認証済み管理者が使用するapi

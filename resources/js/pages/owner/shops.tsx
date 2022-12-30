@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { ApiClient } from "../../apis/ApiClient";
 import { Shop } from "../../types/shop";
 
@@ -21,6 +22,7 @@ export const ShopsPage = () => {
                 {shops.map((shop) => (
                     <div key={shop.id}>
                         <div>{shop.name}</div>
+                        <Link to={"/owner/shops/edit/" + shop.id}>編集</Link>
                     </div>
                 ))}
             </p>

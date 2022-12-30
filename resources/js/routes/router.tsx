@@ -16,11 +16,17 @@ import { LoginAdminPage } from "../pages/admin/login";
 import { AdminIndexPage } from "../pages/admin";
 import { CreateOwner } from "../pages/admin/createOwner";
 import { UpdateOwner } from "../pages/admin/updateOwner";
+import { ShopEdit } from "../pages/owner/shops/edit";
+import { NotFound } from "../pages/404";
 
 export const router = createBrowserRouter([
     {
         path: "/",
         element: <IndexPage />,
+    },
+    {
+        path: "/404",
+        element: <NotFound />,
     },
     {
         path: "/product/:id",
@@ -69,6 +75,10 @@ export const router = createBrowserRouter([
             {
                 path: "/owner/shops",
                 element: <ShopsPage />,
+            },
+            {
+                path: "/owner/shops/edit/:id",
+                element: <ShopEdit />,
             },
         ],
     },
