@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Row, Col } from "react-bootstrap";
 import { ApiClient } from "../../apis/ApiClient";
+import { CardShopList } from "../../components/molecules/CardShopList";
 import { Shop } from "../../types/shop";
 
 export const ShopsPage = () => {
@@ -17,15 +18,21 @@ export const ShopsPage = () => {
     }, []);
     return (
         <div>
-            <p>店舗一覧ページ</p>
-            <p>
-                {shops.map((shop) => (
-                    <div key={shop.id}>
-                        <div>{shop.name}</div>
-                        <Link to={"/owner/shops/edit/" + shop.id}>編集</Link>
-                    </div>
-                ))}
-            </p>
+            {shops.map((shop) => (
+                <div key={shop.id}>
+                    <Row xs={1} md={2} lg={3} className="g-4">
+                        <Col>
+                            <CardShopList
+                                img={shop.filename}
+                                name={shop.name}
+                                desc={shop.information}
+                                is_selling={shop.is_selling === 1}
+                                editLink={"/owner/shops/edit/" + shop.id}
+                            />
+                        </Col>
+                    </Row>
+                </div>
+            ))}
         </div>
     );
 };
