@@ -2,6 +2,8 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Validation\Rule;
+
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreShopRequest extends FormRequest
@@ -27,7 +29,10 @@ class StoreShopRequest extends FormRequest
             'name' => 'required|max:255',
             'information' => 'required|max:255',
             'image' => 'required|max:2048|image|mimes:png,jpg,jpeg',
-            'status' => 'required|boolean',
+            'status' => [
+                'required',
+                Rule::in(["true", "false"]),
+            ]
         ];
     }
 
