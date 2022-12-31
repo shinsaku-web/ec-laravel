@@ -29,7 +29,7 @@ export const CardShopList = ({
                 <Card.Title>{name}</Card.Title>
                 <Card.Text>{desc}</Card.Text>
                 {is_selling ? (
-                    <Badge className="p-2" bg="primary">
+                    <Badge className="p-2" bg="info">
                         販売中
                     </Badge>
                 ) : (
@@ -40,7 +40,7 @@ export const CardShopList = ({
                 <br />
                 <br />
                 <Button variant="primary" href={editLink}>
-                    カートに入れる
+                    編集する
                 </Button>
             </Card.Body>
         </Card>
