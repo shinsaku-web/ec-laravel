@@ -13,7 +13,7 @@ class StoreShopRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,20 @@ class StoreShopRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name' => 'required|max:255',
+            'information' => 'required|max:255',
+            'image' => 'required|max:2048|image|mimes:png,jpg,jpeg',
+            'status' => 'required|boolean',
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            "name" => "名前は必須です。",
+            "information" => "店舗情報は必須です。",
+            "image" => "指定されたファイルが画像ではありません。",
+            "status" => "販売状況は必須です。",
         ];
     }
 }
