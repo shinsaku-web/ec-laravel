@@ -19,6 +19,7 @@ export const ShopEdit = () => {
         handleChangeImage,
         handleChangeStatus,
         handleSubmit,
+        error,
     } = useShopEdit();
     const { id } = useParams();
     const navigate = useNavigate();
@@ -58,7 +59,7 @@ export const ShopEdit = () => {
                     handleSubmit();
                 }}
             >
-                {"" && (
+                {error && (
                     <Alert style={{ fontWeight: "bold" }} variant="danger">
                         Something is Wrong !
                     </Alert>

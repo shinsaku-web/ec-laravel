@@ -16,6 +16,7 @@ export const useShopEdit = () => {
         status: true,
     };
     const [inputShop, setInputShop] = useState<Input>(initialInputs);
+    const [error, setError] = useState<boolean>(false);
 
     const handleChangeName = (e: React.ChangeEvent<HTMLInputElement>) => {
         setInputShop((prev) => ({ ...prev, name: e.target.value }));
@@ -31,13 +32,13 @@ export const useShopEdit = () => {
     };
 
     const handleSubmit = () => {
-        console.log(inputShop);
         (async () => {
-            const { data } = await ApiClient.put(
-                "/api/owner/shop/1",
-                inputShop
-            );
-            console.log(data);
+            try {
+                await ApiClient.put("/api/owner/shop/1", inputShop);
+            } catch (error) {
+                console.error(error);
+                setError(true);
+            }
         })();
     };
 
@@ -47,5 +48,6 @@ export const useShopEdit = () => {
         handleChangeImage,
         handleChangeStatus,
         handleSubmit,
+        error,
     };
 };
