@@ -44,21 +44,20 @@ class ShopController extends Controller
 
     public function update(StoreShopRequest $request, $id)
     {
-        // return response()->json(["message" => $request]);
-        $img = $request->image;
 
         // $idが妥当かチェック
 
+        $img = $request->image;
         if (!is_null($img)) {
             try {
                 Shop::where("id", $id)->update([
                     "name" => $request->name,
                     "information" => $request->information,
-                    "filename" => $request->image,
+                    "filename" => $img,
                     "is_selling" => $request->status === 'true' ? 1 : 0
                 ]);
-                // Storage::putFile("public/shops", $img);
-                return response()->json(["message" => "画像をアップロードしました。", "status" => $request->status]);
+                Storage::putFile("public/shops", $img);
+                return response()->json(["message" => "画像をアップロードしました。"]);
             } catch (\Throwable $th) {
                 return response()->json(["message" => "更新に失敗しました。", "error" => $th], Response::HTTP_UNPROCESSABLE_ENTITY);
             }
