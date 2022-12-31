@@ -53,7 +53,7 @@ class ShopController extends Controller
                 Shop::where("id", $id)->update([
                     "name" => $request->name,
                     "information" => $request->information,
-                    "filename" => Storage::putFile("public/shops", $img),
+                    "filename" => str_replace("public/shops/", "", Storage::putFile("public/shops", $img)),
                     "is_selling" => $request->status === 'true' ? 1 : 0
                 ]);
                 return response()->json(["message" => "画像をアップロードしました。"]);
