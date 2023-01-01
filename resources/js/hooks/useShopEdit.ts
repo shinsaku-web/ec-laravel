@@ -1,6 +1,7 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import { ApiClient } from "../apis/ApiClient";
+import { Shop } from "../types/shop";
 
 interface Input {
     name: string;
@@ -10,15 +11,16 @@ interface Input {
 }
 
 export const useShopEdit = () => {
-    const initialInputs = {
+    const initState = {
         name: "",
         information: "",
         image: null,
         status: false,
     };
-    const [inputShop, setInputShop] = useState<Input>(initialInputs);
+    const [inputShop, setInputShop] = useState<Input>(initState);
     const [error, setError] = useState<boolean>(false);
     const navigate = useNavigate();
+    const { id } = useParams();
 
     const handleChangeName = (e: React.ChangeEvent<HTMLInputElement>) => {
         setInputShop((prev) => ({ ...prev, name: e.target.value }));
@@ -65,7 +67,28 @@ export const useShopEdit = () => {
         })();
     };
 
+    useEffect(() => {
+        (async () => {
+            try {
+                const {
+                    data: { name, information, is_selling },
+                }: { data: Shop } = await ApiClient("/api/owner/shop/" + id);
+                setInputShop((prev) => ({
+                    ...prev,
+                    name,
+                    information,
+                    image: null,
+                    status: is_selling === 1,
+                }));
+            } catch (error) {
+                console.error(error);
+                navigate("/404");
+            }
+        })();
+    }, []);
+
     return {
+        inputShop,
         handleChangeName,
         handleChangeInfo,
         handleChangeImage,

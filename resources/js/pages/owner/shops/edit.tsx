@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import {
     Alert,
     Button,
@@ -7,13 +6,12 @@ import {
     FormGroup,
     FormLabel,
 } from "react-bootstrap";
-import { Form, useNavigate, useParams } from "react-router-dom";
-import { ApiClient } from "../../../apis/ApiClient";
+import { Form } from "react-router-dom";
 import { useShopEdit } from "../../../hooks/useShopEdit";
-import { Shop } from "../../../types/shop";
 
 export const ShopEdit = () => {
     const {
+        inputShop,
         handleChangeName,
         handleChangeInfo,
         handleChangeImage,
@@ -21,31 +19,11 @@ export const ShopEdit = () => {
         handleSubmit,
         error,
     } = useShopEdit();
-    const { id } = useParams();
-    const navigate = useNavigate();
-    const [initialShop, setInitialShop] = useState<Shop | null>(null);
-    useEffect(() => {
-        (async () => {
-            try {
-                const { data } = await ApiClient("/api/owner/shop/" + id);
-                setInitialShop((prev) => ({ ...prev, ...data }));
-            } catch (error) {
-                console.error(error);
-                navigate("/404");
-            }
-        })();
-    }, []);
-
-    if (!initialShop) {
-        return <div>データの取得に失敗しました。</div>;
-    }
 
     return (
         <div>
             <h2>shopを編集</h2>
-            <div>test</div>
-            <p>{initialShop.name}</p>
-            <p>{initialShop.information}</p>
+            <div style={{ height: 16 }}></div>
             <Form
                 action=""
                 encType="multipart/form-data"
@@ -70,6 +48,7 @@ export const ShopEdit = () => {
                         type="name"
                         placeholder="Enter Shop Name"
                         onChange={handleChangeName}
+                        value={inputShop.name}
                     />
                 </FormGroup>
                 <FormGroup className="mb-3" controlId="information">
@@ -79,6 +58,7 @@ export const ShopEdit = () => {
                         rows={3}
                         placeholder="Enter Shop Information"
                         onChange={handleChangeInfo}
+                        value={inputShop.information}
                     />
                 </FormGroup>
                 <FormGroup className="mb-3" controlId="image">
@@ -96,6 +76,7 @@ export const ShopEdit = () => {
                         id="shop-status"
                         label="販売中"
                         onChange={handleChangeStatus}
+                        checked={inputShop.status}
                     />
                 </FormGroup>
                 <div className="d-grid pt-2">
