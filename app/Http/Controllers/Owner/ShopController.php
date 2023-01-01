@@ -29,7 +29,7 @@ class ShopController extends Controller
         });
     }
 
-    public function index(Request $request)
+    public function index()
     {
         $id = Auth::id();
         $shop = Shop::where("owner_id", $id)->get();

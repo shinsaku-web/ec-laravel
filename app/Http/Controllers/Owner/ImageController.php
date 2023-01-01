@@ -3,10 +3,29 @@
 namespace App\Http\Controllers\Owner;
 
 use App\Http\Controllers\Controller;
+use App\Models\Image;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 
 class ImageController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware("auth:owners");
+
+        $this->middleware(function ($request, $next) {
+            $image_id = $request->route()->parameter('image');
+            if (!is_null($image_id)) {
+                $ImageOwnerId = Image::findOrFail($image_id)->owner->id;
+                $ownerId = Auth::id();
+                if ($ImageOwnerId !== $ownerId) {
+                    return response()->json(["message" => "imageが存在しません"], Response::HTTP_NOT_FOUND);
+                }
+            }
+            return $next($request);
+        });
+    }
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +33,9 @@ class ImageController extends Controller
      */
     public function index()
     {
-        //
+        $id = Auth::id();
+        $images = Image::where("owner_id", $id)->orderBy("updated_at", "desc")->paginate(20);
+        return response()->json($images);
     }
 
     /**

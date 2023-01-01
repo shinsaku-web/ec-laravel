@@ -9,6 +9,11 @@ class Image extends Model
 {
     use HasFactory;
 
+    public function owner()
+    {
+        return $this->belongsTo(Owner::class);
+    }
+
     protected $fillable = [
         'name',
         'email',
