@@ -36,7 +36,7 @@ class ShopController extends Controller
         return response()->json($shop);
     }
 
-    public function edit($id)
+    public function show($id)
     {
         $shop = Shop::find($id);
         return response()->json($shop);
