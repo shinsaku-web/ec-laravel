@@ -18,6 +18,8 @@ import { CreateOwner } from "../pages/admin/createOwner";
 import { UpdateOwner } from "../pages/admin/updateOwner";
 import { ShopEdit } from "../pages/owner/shops/edit";
 import { NotFound } from "../pages/404";
+import { CreateImages } from "../pages/owner/images/create";
+import { UpdateImages } from "../pages/owner/images/update";
 
 export const router = createBrowserRouter([
     {
@@ -71,6 +73,14 @@ export const router = createBrowserRouter([
             {
                 path: "/owner/images",
                 element: <ImagePage />,
+            },
+            {
+                path: "/owner/images/create",
+                element: <CreateImages />,
+            },
+            {
+                path: "/owner/images/update",
+                element: <UpdateImages />,
             },
             {
                 path: "/owner/shops",
