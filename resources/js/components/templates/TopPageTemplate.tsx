@@ -10,7 +10,7 @@ import { UserPageLayout } from "../organisms/UserPageLayout";
 export const TopPageTemplate = () => {
     const [isLoading, setIsLoading] = useState(true);
     const {
-        user: { id, name },
+        user: { id },
     } = useAuth("user");
 
     useEffect(() => {
@@ -71,7 +71,7 @@ export const TopPageTemplate = () => {
 
     return (
         <UserPageLayout>
-            <p className="mb-4">こんにちは、{name}さん</p>
+            {/* <p className="mb-4">こんにちは、{name}さん</p> */}
             <Row xs={1} md={2} lg={3} className="g-4">
                 {Array.from({ length: 5 }).map((_, idx) => (
                     <Col key={idx}>
