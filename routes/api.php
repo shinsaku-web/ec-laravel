@@ -9,6 +9,7 @@ use App\Http\Controllers\Auth\Owner\LogoutController as OwnerLogoutController;
 use App\Http\Controllers\Auth\User\LoginController;
 use App\Http\Controllers\Auth\User\LogoutController;
 use App\Http\Controllers\Auth\User\RegisterController;
+use App\Http\Controllers\Owner\ShopController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -50,6 +51,9 @@ Route::middleware('auth:owners')->prefix("owner")->group(function () {
         return auth("owners")->user();
     });
     Route::post('/logout', [OwnerLogoutController::class, "logout"]);
+    Route::get("/shop", [ShopController::class, "index"]);
+    Route::get("/shop/{shop}", [ShopController::class, "edit"]);
+    Route::put("/shop/{shop}", [ShopController::class, "update"]);
 });
 
 // 認証済み管理者が使用するapi

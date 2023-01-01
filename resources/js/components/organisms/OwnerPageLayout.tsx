@@ -8,7 +8,7 @@ import { Loading } from "./Loading";
 export const OwnerPageLayout = () => {
     const [isLoading, setIsLoading] = useState(true);
     const {
-        owner: { id, name },
+        owner: { id },
     } = useAuth("owner");
     const navigate = useNavigate();
 
