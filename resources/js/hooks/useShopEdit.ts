@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { ApiClient } from "../apis/ApiClient";
 
 interface Input {
@@ -17,6 +18,7 @@ export const useShopEdit = () => {
     };
     const [inputShop, setInputShop] = useState<Input>(initialInputs);
     const [error, setError] = useState<boolean>(false);
+    const navigate = useNavigate();
 
     const handleChangeName = (e: React.ChangeEvent<HTMLInputElement>) => {
         setInputShop((prev) => ({ ...prev, name: e.target.value }));
@@ -50,18 +52,12 @@ export const useShopEdit = () => {
                 formData.append("image", image);
                 formData.append("status", status.toString());
                 formData.append("_method", "PUT");
-                const { data } = await ApiClient.post(
-                    "/api/owner/shop/1",
-                    formData,
-                    {
-                        headers: {
-                            "Content-Type": "multipart/form-data",
-                        },
-                    }
-                );
-                console.log(data);
-
-                setInputShop(initialInputs); //リダイレクトでいいかも
+                await ApiClient.post("/api/owner/shop/1", formData, {
+                    headers: {
+                        "Content-Type": "multipart/form-data",
+                    },
+                });
+                navigate("/owner/shops");
             } catch (error) {
                 console.error(error);
                 setError(true);

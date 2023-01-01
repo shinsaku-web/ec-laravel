@@ -20,7 +20,11 @@ export const CardShopList = ({
         <Card>
             <Card.Img
                 variant="top"
-                src={img === "" ? "/images/no_image.jpg" : img}
+                src={
+                    img === ""
+                        ? "/images/no_image.jpg"
+                        : "/storage/shops/" + img
+                }
                 width={300}
                 height={200}
                 style={{ objectFit: "cover" }}
