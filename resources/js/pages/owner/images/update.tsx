@@ -9,7 +9,7 @@ import {
 import { useImageUpdate } from "../../../hooks/useImageUpdate";
 
 export const UpdateImages = () => {
-    const { handleChangeTitle, handleChangeImage, handleSubmit, error } =
+    const { input, handleChangeTitle, handleChangeImage, handleSubmit, error } =
         useImageUpdate();
     return (
         <div style={{ maxWidth: 600, margin: "auto" }}>
@@ -31,7 +31,11 @@ export const UpdateImages = () => {
                 )}
                 <FormGroup className="mb-3" controlId="title">
                     <FormLabel>title</FormLabel>
-                    <FormControl type="text" onChange={handleChangeTitle} />
+                    <FormControl
+                        type="text"
+                        onChange={handleChangeTitle}
+                        value={input.title === null ? "" : input.title}
+                    />
                 </FormGroup>
                 <FormGroup className="mb-3" controlId="files">
                     <FormLabel>Images</FormLabel>

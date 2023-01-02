@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { ApiClient } from "../apis/ApiClient";
 
@@ -68,7 +68,26 @@ export const useImageUpdate = () => {
         })();
     };
 
+    useEffect(() => {
+        (async () => {
+            try {
+                const {
+                    data: { title },
+                } = await ApiClient("/api/owner/images/" + id + "/edit");
+
+                setInput((prev) => ({
+                    ...prev,
+                    title,
+                }));
+            } catch (error) {
+                console.error(error);
+                navigate("/404");
+            }
+        })();
+    }, []);
+
     return {
+        input,
         handleChangeTitle,
         handleChangeImage,
         handleSubmit,

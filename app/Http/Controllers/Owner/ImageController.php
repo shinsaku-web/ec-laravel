@@ -74,9 +74,10 @@ class ImageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function edit($id)
     {
-        //
+        $images = Image::where("id", $id)->first();
+        return response()->json($images);
     }
 
     /**
