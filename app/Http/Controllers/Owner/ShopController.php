@@ -58,7 +58,7 @@ class ShopController extends Controller
                 ]);
                 return response()->json(["message" => "画像をアップロードしました。"]);
             } catch (\Throwable $th) {
-                return response()->json(["message" => "更新に失敗しました。", "error" => $th], Response::HTTP_UNPROCESSABLE_ENTITY);
+                return response()->json(["message" => "更新に失敗しました。", "error" => $th->getMessage()], Response::HTTP_UNPROCESSABLE_ENTITY);
             }
         }
 

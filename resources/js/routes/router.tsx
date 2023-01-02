@@ -79,7 +79,7 @@ export const router = createBrowserRouter([
                 element: <CreateImages />,
             },
             {
-                path: "/owner/images/update",
+                path: "/owner/images/update/:id",
                 element: <UpdateImages />,
             },
             {

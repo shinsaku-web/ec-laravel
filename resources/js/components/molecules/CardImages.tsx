@@ -1,10 +1,12 @@
+import { Button } from "react-bootstrap";
 import Card from "react-bootstrap/Card";
 
 interface Props {
     filename: string | null;
     title: string | null;
+    href: string;
 }
-export const CardImages = ({ filename, title }: Props) => {
+export const CardImages = ({ filename, title, href }: Props) => {
     return (
         <Card>
             <Card.Img
@@ -20,6 +22,10 @@ export const CardImages = ({ filename, title }: Props) => {
             />
             <Card.Body>
                 <Card.Title>{title}</Card.Title>
+                <br />
+                <Button style={{ color: "#fff" }} variant="primary" href={href}>
+                    編集する
+                </Button>
             </Card.Body>
         </Card>
     );

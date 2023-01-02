@@ -5,9 +5,9 @@ import { CardImages } from "../../components/molecules/CardImages";
 import { Image } from "../../types/image";
 
 export const ImagePage = () => {
-    const [images, setImages] = useState<Pick<Image, "filename" | "title">[]>(
-        []
-    );
+    const [images, setImages] = useState<
+        Pick<Image, "id" | "filename" | "title">[]
+    >([]);
     useEffect(() => {
         (async () => {
             const { data } = await ApiClient("/api/owner/images");
@@ -34,7 +34,11 @@ export const ImagePage = () => {
             <div>
                 <Row xs={2} lg={4} className="g-0">
                     {images.map((image, i) => (
-                        <CardImages key={i} {...image} />
+                        <CardImages
+                            key={i}
+                            {...image}
+                            href={"/owner/images/update/" + image.id}
+                        />
                     ))}
                 </Row>
             </div>
