@@ -35,7 +35,7 @@ class ImageController extends Controller
     public function index()
     {
         $id = Auth::id();
-        $images = Image::where("owner_id", $id)->orderBy("updated_at", "desc")->paginate(20);
+        $images = Image::where("owner_id", $id)->orderBy("updated_at", "desc")->select("filename", "title")->paginate(20);
         return response()->json($images);
     }
 

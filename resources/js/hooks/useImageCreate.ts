@@ -46,7 +46,7 @@ export const useImageCreate = () => {
                         "Content-Type": "multipart/form-data",
                     },
                 });
-                navigate("/owner/shops");
+                navigate("/owner/images");
             } catch (error) {
                 console.error(error);
                 setError(true);
