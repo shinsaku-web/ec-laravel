@@ -19,12 +19,20 @@ class DatabaseSeeder extends Seeder
         \App\Models\Admin::factory(10)->create();
 
         \App\Models\User::factory()->create([
-            'name' => 'test',
+            'name' => 'test11',
+            'email' => 'test@example.com',
+        ]);
+        \App\Models\User::factory()->create([
+            'name' => 'test12',
+            'email' => 'test2@example.com',
+        ]);
+        \App\Models\Owner::factory()->create([
+            'name' => 'test11',
             'email' => 'test@example.com',
         ]);
         \App\Models\Owner::factory()->create([
-            'name' => 'test',
-            'email' => 'test@example.com',
+            'name' => 'test12',
+            'email' => 'test2@example.com',
         ]);
         \App\Models\Admin::factory()->create([
             'name' => 'test',
@@ -33,6 +41,7 @@ class DatabaseSeeder extends Seeder
 
         $this->call([
             ShopSeeder::class,
+            ImageSeeder::class,
         ]);
     }
 }

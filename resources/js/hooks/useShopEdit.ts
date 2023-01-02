@@ -54,7 +54,7 @@ export const useShopEdit = () => {
                 formData.append("image", image);
                 formData.append("status", status.toString());
                 formData.append("_method", "PUT");
-                await ApiClient.post("/api/owner/shop/1", formData, {
+                await ApiClient.post("/api/owner/shop/" + id, formData, {
                     headers: {
                         "Content-Type": "multipart/form-data",
                     },

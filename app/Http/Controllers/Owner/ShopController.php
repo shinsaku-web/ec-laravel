@@ -29,14 +29,14 @@ class ShopController extends Controller
         });
     }
 
-    public function index(Request $request)
+    public function index()
     {
         $id = Auth::id();
         $shop = Shop::where("owner_id", $id)->get();
         return response()->json($shop);
     }
 
-    public function edit($id)
+    public function show($id)
     {
         $shop = Shop::find($id);
         return response()->json($shop);
@@ -44,8 +44,6 @@ class ShopController extends Controller
 
     public function update(StoreShopRequest $request, $id)
     {
-
-        // $idが妥当かチェック
 
         $img = $request->image;
         if (!is_null($img)) {
@@ -58,7 +56,7 @@ class ShopController extends Controller
                 ]);
                 return response()->json(["message" => "画像をアップロードしました。"]);
             } catch (\Throwable $th) {
-                return response()->json(["message" => "更新に失敗しました。", "error" => $th], Response::HTTP_UNPROCESSABLE_ENTITY);
+                return response()->json(["message" => "更新に失敗しました。", "error" => $th->getMessage()], Response::HTTP_UNPROCESSABLE_ENTITY);
             }
         }
 
