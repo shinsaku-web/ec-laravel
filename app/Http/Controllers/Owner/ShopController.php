@@ -45,8 +45,6 @@ class ShopController extends Controller
     public function update(StoreShopRequest $request, $id)
     {
 
-        // $idが妥当かチェック
-
         $img = $request->image;
         if (!is_null($img)) {
             try {
