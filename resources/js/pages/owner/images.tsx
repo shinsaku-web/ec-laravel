@@ -34,11 +34,7 @@ export const ImagePage = () => {
             <div>
                 <Row xs={2} lg={4} className="g-0">
                     {images.map((image, i) => (
-                        <CardImages
-                            key={i}
-                            {...image}
-                            href={"/owner/images/update/" + image.id}
-                        />
+                        <CardImages key={i} {...image} id={image.id} />
                     ))}
                 </Row>
             </div>

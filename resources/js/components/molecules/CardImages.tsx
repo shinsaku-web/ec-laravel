@@ -1,12 +1,14 @@
 import { Button } from "react-bootstrap";
 import Card from "react-bootstrap/Card";
+import { useImageDelete } from "../../hooks/useImageDelete";
 
 interface Props {
     filename: string | null;
     title: string | null;
-    href: string;
+    id: number;
 }
-export const CardImages = ({ filename, title, href }: Props) => {
+export const CardImages = ({ filename, title, id }: Props) => {
+    const { handleDelete } = useImageDelete();
     return (
         <Card>
             <Card.Img
@@ -23,8 +25,19 @@ export const CardImages = ({ filename, title, href }: Props) => {
             <Card.Body>
                 <Card.Title>{title}</Card.Title>
                 <br />
-                <Button style={{ color: "#fff" }} variant="primary" href={href}>
+                <Button
+                    style={{ color: "#fff" }}
+                    variant="primary"
+                    href={"/owner/images/update/" + id}
+                >
                     編集する
+                </Button>
+                <Button
+                    style={{ color: "#fff", marginLeft: 16 }}
+                    variant="danger"
+                    onClick={() => handleDelete(id)}
+                >
+                    削除
                 </Button>
             </Card.Body>
         </Card>

@@ -112,7 +112,17 @@ class ImageController extends Controller
      */
     public function destroy($id)
     {
-        $image = Image::findOrFail($id);
-        $filePath = "";
+        try {
+            $image = Image::findOrFail($id);
+            $filePath = "public/products/" . $image->filename;
+
+            if (Storage::exists($filePath)) {
+                Storage::delete($filePath);
+                $image->delete();
+                return response()->json(["message" => "削除しました。"]);
+            }
+        } catch (\Throwable $th) {
+            return response()->json(["message" => "削除に失敗しました。", "error" => $th->getMessage()], Response::HTTP_UNPROCESSABLE_ENTITY);
+        }
     }
 }
