@@ -1,6 +1,5 @@
 import { Button } from "react-bootstrap";
 import Card from "react-bootstrap/Card";
-import { useImageDelete } from "../../hooks/useImageDelete";
 
 interface Props {
     filename: string | null;
@@ -8,7 +7,6 @@ interface Props {
     id: number;
 }
 export const CardImages = ({ filename, title, id }: Props) => {
-    const { handleDelete } = useImageDelete();
     return (
         <Card>
             <Card.Img
@@ -31,13 +29,6 @@ export const CardImages = ({ filename, title, id }: Props) => {
                     href={"/owner/images/update/" + id}
                 >
                     編集する
-                </Button>
-                <Button
-                    style={{ color: "#fff", marginLeft: 16 }}
-                    variant="danger"
-                    onClick={() => handleDelete(id)}
-                >
-                    削除
                 </Button>
             </Card.Body>
         </Card>

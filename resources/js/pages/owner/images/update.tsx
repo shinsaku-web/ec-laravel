@@ -6,11 +6,13 @@ import {
     FormGroup,
     FormLabel,
 } from "react-bootstrap";
+import { useImageDelete } from "../../../hooks/useImageDelete";
 import { useImageUpdate } from "../../../hooks/useImageUpdate";
 
 export const UpdateImages = () => {
     const { input, handleChangeTitle, handleChangeImage, handleSubmit, error } =
         useImageUpdate();
+    const { handleDelete } = useImageDelete();
     return (
         <div style={{ maxWidth: 600, margin: "auto" }}>
             <h3>画像の編集</h3>
@@ -47,9 +49,17 @@ export const UpdateImages = () => {
                 </FormGroup>
 
                 {/* forgot password入れる? */}
-                <div className="d-grid pt-2">
+                <div className="d-flex pt-2">
                     <Button variant="primary" type="submit">
                         変更する
+                    </Button>
+                    <Button
+                        className="mx-3"
+                        variant="danger"
+                        type="button"
+                        onClick={handleDelete}
+                    >
+                        削除
                     </Button>
                 </div>
             </Form>
