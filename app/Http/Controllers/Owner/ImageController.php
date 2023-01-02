@@ -88,20 +88,14 @@ class ImageController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $img = $request->image;
-        if (!is_null($img)) {
-            try {
-                Image::where("id", $id)->update([
-                    "title" => $request->title,
-                    "filename" => str_replace("public/products/", "", Storage::putFile("public/products", $img)),
-                ]);
-                return response()->json(["message" => "更新に成功しました。"]);
-            } catch (\Throwable $th) {
-                return response()->json(["message" => "更新に失敗しました。", "error" => $th->getMessage()], Response::HTTP_UNPROCESSABLE_ENTITY);
-            }
+        try {
+            Image::where("id", $id)->update([
+                "title" => $request->title,
+            ]);
+            return response()->json(["message" => "更新に成功しました。"]);
+        } catch (\Throwable $th) {
+            return response()->json(["message" => "更新に失敗しました。", "error" => $th->getMessage()], Response::HTTP_UNPROCESSABLE_ENTITY);
         }
-
-        return response()->json(["message" => "更新に失敗しました。"], Response::HTTP_UNPROCESSABLE_ENTITY);
     }
 
     /**

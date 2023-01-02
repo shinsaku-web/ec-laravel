@@ -9,7 +9,7 @@ import { Form } from "react-router-dom";
 import { useImageCreate } from "../../../hooks/useImageCreate";
 
 export const CreateImages = () => {
-    const { handleChangeImage, handleSubmit } = useImageCreate();
+    const { handleChangeImage, handleSubmit, error } = useImageCreate();
     return (
         <div style={{ maxWidth: 600, margin: "auto" }}>
             <h3>画像アップロード</h3>
@@ -24,7 +24,7 @@ export const CreateImages = () => {
                 }}
                 onSubmit={handleSubmit}
             >
-                {"" && (
+                {error && (
                     <Alert style={{ fontWeight: "bold" }} variant="danger">
                         Something is Wrong !
                     </Alert>

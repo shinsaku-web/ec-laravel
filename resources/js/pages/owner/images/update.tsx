@@ -10,8 +10,7 @@ import { useImageDelete } from "../../../hooks/useImageDelete";
 import { useImageUpdate } from "../../../hooks/useImageUpdate";
 
 export const UpdateImages = () => {
-    const { input, handleChangeTitle, handleChangeImage, handleSubmit, error } =
-        useImageUpdate();
+    const { input, handleChangeTitle, handleSubmit, error } = useImageUpdate();
     const { handleDelete } = useImageDelete();
     return (
         <div style={{ maxWidth: 600, margin: "auto" }}>
@@ -39,14 +38,13 @@ export const UpdateImages = () => {
                         value={input.title === null ? "" : input.title}
                     />
                 </FormGroup>
-                <FormGroup className="mb-3" controlId="files">
-                    <FormLabel>Images</FormLabel>
-                    <FormControl
-                        type="file"
-                        accept="image/png,image/jpeg,image/jpg"
-                        onChange={handleChangeImage}
-                    />
-                </FormGroup>
+                <img
+                    src={`/storage/products/${input.filename}`}
+                    alt=""
+                    width={300}
+                    height={200}
+                    style={{ objectFit: "contain" }}
+                />
 
                 {/* forgot password入れる? */}
                 <div className="d-flex pt-2">

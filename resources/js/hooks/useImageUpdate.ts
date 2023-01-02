@@ -4,13 +4,13 @@ import { ApiClient } from "../apis/ApiClient";
 
 interface Input {
     title: string | null;
-    image: File | null;
+    filename: string;
 }
 
 export const useImageUpdate = () => {
     const initState = {
         title: null,
-        image: null,
+        filename: "",
     };
     const [input, setInput] = useState<Input>(initState);
     const [error, setError] = useState<boolean>(false);
@@ -26,34 +26,14 @@ export const useImageUpdate = () => {
         }));
     };
 
-    const handleChangeImage = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const files = e.target.files;
-
-        if (files && files[0]) {
-            setInput((prev) => ({
-                ...prev,
-                image: files[0],
-            }));
-        } else {
-            setInput((prev) => ({
-                ...prev,
-                image: null,
-            }));
-        }
-    };
-
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         (async () => {
             try {
-                const { title, image } = input;
-                if (!image) {
-                    throw new Error("画像を入れてください。");
-                }
+                const { title } = input;
                 const formData = new FormData();
 
                 formData.append("title", title === null ? "" : title);
-                formData.append("image", image);
                 formData.append("_method", "PUT");
                 await ApiClient.post("/api/owner/images/" + id, formData, {
                     headers: {
@@ -72,12 +52,13 @@ export const useImageUpdate = () => {
         (async () => {
             try {
                 const {
-                    data: { title },
+                    data: { title, filename },
                 } = await ApiClient("/api/owner/images/" + id + "/edit");
 
                 setInput((prev) => ({
                     ...prev,
                     title,
+                    filename,
                 }));
             } catch (error) {
                 console.error(error);
@@ -89,7 +70,6 @@ export const useImageUpdate = () => {
     return {
         input,
         handleChangeTitle,
-        handleChangeImage,
         handleSubmit,
         error,
     };
