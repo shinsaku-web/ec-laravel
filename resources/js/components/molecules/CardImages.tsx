@@ -14,7 +14,7 @@ export const CardImages = ({ filename, title, href }: Props) => {
                 src={
                     !filename
                         ? "/images/no_image.jpg"
-                        : "/storage/images/" + filename
+                        : "/storage/products/" + filename
                 }
                 width={300}
                 height={200}

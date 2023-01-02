@@ -54,8 +54,7 @@ class ImageController extends Controller
                 $data = array_map(function ($img) use ($ownerId) {
                     return [
                         "owner_id" => $ownerId,
-                        "filename" => str_replace("public/images/", "", Storage::putFile("public/images", $img)),
-                        // "title" => ""
+                        "filename" => str_replace("public/products/", "", Storage::putFile("public/products", $img)),
                     ];
                 }, $images);
                 Image::insert($data);
@@ -94,7 +93,7 @@ class ImageController extends Controller
             try {
                 Image::where("id", $id)->update([
                     "title" => $request->title,
-                    "filename" => str_replace("public/images/", "", Storage::putFile("public/images", $img)),
+                    "filename" => str_replace("public/products/", "", Storage::putFile("public/products", $img)),
                 ]);
                 return response()->json(["message" => "更新に成功しました。"]);
             } catch (\Throwable $th) {
@@ -113,6 +112,7 @@ class ImageController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $image = Image::findOrFail($id);
+        $filePath = "";
     }
 }
