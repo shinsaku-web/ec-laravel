@@ -7,6 +7,7 @@ use App\Models\Image;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class ImageController extends Controller
 {
@@ -46,7 +47,25 @@ class ImageController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $images = $request->images;
+        if ($images) {
+            try {
+                $ownerId = Auth::id();
+                $data = array_map(function ($img) use ($ownerId) {
+                    return [
+                        "owner_id" => $ownerId,
+                        "filename" => str_replace("public/images/", "", Storage::putFile("public/images", $img)),
+                        // "title" => ""
+                    ];
+                }, $images);
+                Image::insert($data);
+                return response()->json(["message" => "画像をアップロードしました。"]);
+            } catch (\Throwable $th) {
+                return response()->json(["message" => "更新に失敗しました。", "error" => $th->getMessage()], Response::HTTP_UNPROCESSABLE_ENTITY);
+            }
+        }
+
+        return response()->json(["message" => "更新に失敗しました。"], Response::HTTP_UNPROCESSABLE_ENTITY);
     }
 
     /**
