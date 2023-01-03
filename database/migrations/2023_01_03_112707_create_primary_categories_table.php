@@ -15,7 +15,8 @@ return new class extends Migration
     {
         Schema::create('primary_categories', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->string("name");
+            $table->integer("sort_order");
         });
     }
 

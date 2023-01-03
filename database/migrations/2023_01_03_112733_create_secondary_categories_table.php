@@ -15,7 +15,9 @@ return new class extends Migration
     {
         Schema::create('secondary_categories', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->string("name");
+            $table->foreignId('primary_category_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
+            $table->integer("sort_order");
         });
     }
 
