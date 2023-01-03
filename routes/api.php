@@ -54,6 +54,7 @@ Route::middleware('auth:owners')->prefix("owner")->group(function () {
     Route::post('/logout', [OwnerLogoutController::class, "logout"]);
     Route::resource("shop", ShopController::class)->except(["create", "edit"]);
     Route::resource("images", ImageController::class)->except(["show"]);
+    Route::resource("products", ImageController::class)->except(["show"]);
 });
 
 // 認証済み管理者が使用するapi

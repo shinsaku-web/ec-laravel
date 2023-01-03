@@ -23,11 +23,6 @@ class Product extends Model
         "image4",
     ];
 
-    public function owner()
-    {
-        return $this->belongsTo(Owner::class);
-    }
-
     public function shop()
     {
         return $this->belongsTo(Owner::class);
