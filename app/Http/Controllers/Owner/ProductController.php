@@ -35,8 +35,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Owner::findOrFail(Auth::id())->shop->product->get();
-        return $products;
+        $products = Owner::findOrFail(Auth::id())->shop->product->all();
+        return response()->json($products);
     }
 
     /**
