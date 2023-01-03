@@ -21,6 +21,11 @@ class Owner extends Authenticatable
         return $this->hasMany(Image::class);
     }
 
+    public function product()
+    {
+        return $this->hasMany(Product::class);
+    }
+
 
     /**
      * The attributes that are mass assignable.
