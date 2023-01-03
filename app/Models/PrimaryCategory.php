@@ -13,4 +13,10 @@ class PrimaryCategory extends Model
         'name',
         'sort_order',
     ];
+
+
+    public function secondary()
+    {
+        return $this->hasMany(SecondaryCategory::class);
+    }
 }

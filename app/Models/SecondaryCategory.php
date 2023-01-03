@@ -14,4 +14,9 @@ class SecondaryCategory extends Model
         "primary_category_id",
         'sort_order',
     ];
+
+    public function primary()
+    {
+        return $this->belongsTo(PrimaryCategory::class);
+    }
 }
