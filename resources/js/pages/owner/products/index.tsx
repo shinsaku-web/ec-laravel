@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Row, Col } from "react-bootstrap";
+import { Row, Col, Button } from "react-bootstrap";
 import { ApiClient } from "../../../apis/ApiClient";
 import { CardPrimary } from "../../../components/molecules/CardPrimary";
 import { Product } from "../../../types/product";
@@ -21,6 +21,19 @@ export const ProductsIndexPage = () => {
     }
     return (
         <div>
+            <div
+                style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                    marginBottom: 24,
+                }}
+            >
+                <h3>商品一覧</h3>
+                <Button href="/owner/products/create" variant="success">
+                    商品を新規登録する
+                </Button>
+            </div>
             <Row xs={1} md={2} lg={3} className="g-4">
                 {products.map((product, idx) => (
                     <Col key={idx}>
