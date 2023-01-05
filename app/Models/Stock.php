@@ -14,4 +14,6 @@ class Stock extends Model
         'type',
         'quantity',
     ];
+
+    protected $table =  "t_stocks";
 }

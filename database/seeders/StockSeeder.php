@@ -15,7 +15,7 @@ class StockSeeder extends Seeder
      */
     public function run()
     {
-        DB::table("stocks")->insert([
+        DB::table("t_stocks")->insert([
             [
                 "product_id" => 1,
                 "type" => 1,
@@ -29,12 +29,12 @@ class StockSeeder extends Seeder
             [
                 "product_id" => 1,
                 "type" => 0,
-                "quantity" => 100,
+                "quantity" => -100,
             ],
             [
                 "product_id" => 2,
                 "type" => 0,
-                "quantity" => 100,
+                "quantity" => -100,
             ],
         ]);
     }
