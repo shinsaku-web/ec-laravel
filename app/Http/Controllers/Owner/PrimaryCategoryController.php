@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Owner;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\StorePrimaryCategoryRequest;
 use App\Http\Requests\UpdatePrimaryCategoryRequest;
 use App\Models\PrimaryCategory;
