@@ -35,8 +35,15 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Owner::findOrFail(Auth::id())->shop->product->all();
-        return response()->json($products);
+        $ownerInfo = Owner::with([
+            "shop.product" => [
+                "imageFirst",
+                "imageSecond",
+                "imageThird",
+                "imageFourth",
+            ]
+        ])->where("id", Auth::id())->get();
+        return response()->json($ownerInfo[0]->shop->product);
     }
 
     /**
