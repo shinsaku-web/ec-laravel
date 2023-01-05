@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { Button, Row } from "react-bootstrap";
-import { ApiClient } from "../../apis/ApiClient";
-import { CardImages } from "../../components/molecules/CardImages";
-import { Image } from "../../types/image";
+import { ApiClient } from "../../../apis/ApiClient";
+import { CardImages } from "../../../components/molecules/CardImages";
+import { Image } from "../../../types/image";
 
 export const ImagePage = () => {
     const [images, setImages] = useState<

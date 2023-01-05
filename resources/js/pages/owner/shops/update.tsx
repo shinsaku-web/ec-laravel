@@ -9,7 +9,7 @@ import {
 import { Form } from "react-router-dom";
 import { useShopEdit } from "../../../hooks/useShopEdit";
 
-export const ShopEdit = () => {
+export const ShopUpdate = () => {
     const {
         inputShop,
         handleChangeName,

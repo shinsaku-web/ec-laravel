@@ -16,10 +16,10 @@ import { LoginAdminPage } from "../pages/admin/login";
 import { AdminIndexPage } from "../pages/admin";
 import { CreateOwner } from "../pages/admin/createOwner";
 import { UpdateOwner } from "../pages/admin/updateOwner";
-import { ShopEdit } from "../pages/owner/shops/edit";
 import { NotFound } from "../pages/404";
 import { CreateImages } from "../pages/owner/images/create";
 import { UpdateImages } from "../pages/owner/images/update";
+import { ShopUpdate } from "../pages/owner/shops/update";
 
 export const router = createBrowserRouter([
     {
@@ -87,8 +87,8 @@ export const router = createBrowserRouter([
                 element: <ShopsPage />,
             },
             {
-                path: "/owner/shops/edit/:id",
-                element: <ShopEdit />,
+                path: "/owner/shops/update/:id",
+                element: <ShopUpdate />,
             },
         ],
     },
