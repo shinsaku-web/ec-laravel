@@ -10,7 +10,6 @@ export const ProductsIndexPage = () => {
         (async () => {
             try {
                 const { data } = await ApiClient("/api/owner/products");
-                console.log(data);
                 setProducts(data);
             } catch (error) {
                 console.error(error);
