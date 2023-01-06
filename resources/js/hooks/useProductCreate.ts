@@ -51,7 +51,7 @@ export const useProductCreate = () => {
         setInputs((prev) => ({ ...prev, name: e.target.value }));
     };
     const handleChangeInfo = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setInputs((prev) => ({ ...prev, info: e.target.value }));
+        setInputs((prev) => ({ ...prev, information: e.target.value }));
     };
     const handleChangePrice = (e: React.ChangeEvent<HTMLInputElement>) => {
         setInputs((prev) => ({ ...prev, price: parseInt(e.target.value) }));

@@ -11,6 +11,7 @@ use App\Models\SecondaryCategory;
 use App\Models\Shop;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
@@ -68,7 +69,28 @@ class ProductController extends Controller
      */
     public function store(StoreProductRequest $request)
     {
-        return response()->json($request);
+        try {
+            Product::create([
+                "shop_id" => $request->shop_id,
+                "name" => $request->name,
+                "information" => $request->information,
+                "price" => $request->price,
+                "is_selling" => $request->is_selling,
+                "sort_order" => $request->sort_order,
+                "secondary_category_id" => $request->secondary_category_id,
+                "image1" => $request->image1 ?
+                    str_replace("public/products/", "", Storage::putFile("public/products", $request->image1)) : null,
+                "image2" => $request->image2 ?
+                    str_replace("public/products/", "", Storage::putFile("public/products", $request->image2)) : null,
+                "image3" => $request->image3 ?
+                    str_replace("public/products/", "", Storage::putFile("public/products", $request->image3)) : null,
+                "image4" => $request->image4 ?
+                    str_replace("public/products/", "", Storage::putFile("public/products", $request->image4)) : null,
+            ]);
+            return response()->json(["message" => "登録に成功しました。"]);
+        } catch (\Throwable $th) {
+            return response()->json(["message" => $th->getMessage()], Response::HTTP_UNPROCESSABLE_ENTITY);
+        }
     }
 
     /**
