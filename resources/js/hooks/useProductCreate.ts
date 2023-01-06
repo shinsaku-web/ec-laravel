@@ -34,8 +34,11 @@ export const useProductCreate = () => {
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         try {
-            await ApiClient.post("/api/owner/products", inputs);
-            console.log("登録しました");
+            const { data } = await ApiClient.post(
+                "/api/owner/products",
+                inputs
+            );
+            console.log(data);
         } catch (error) {
             console.error(error);
             setError(true);
