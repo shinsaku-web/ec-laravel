@@ -1,7 +1,14 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { ApiClient } from "../apis/ApiClient";
 import { ProductInput } from "../types/product";
+import { Shop } from "../types/shop";
 
 type Inputs = Omit<ProductInput, "id" | "created_at" | "updated_at">;
+
+type Category = {
+    id: number;
+    name: string;
+};
 
 export const useProductCreate = () => {
     const initState = {
@@ -19,6 +26,9 @@ export const useProductCreate = () => {
     };
     const [inputs, setInputs] = useState<Inputs>(initState);
     const [error, setError] = useState<boolean>(false);
+    const [shops, setShops] = useState<Pick<Shop, "id" | "name">[]>([]);
+    const [categories, setCategories] = useState<Category[]>([]);
+
     console.log(inputs);
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -73,11 +83,20 @@ export const useProductCreate = () => {
         }
     };
 
-    // const shopList
-    // const categoryList
+    useEffect(() => {
+        (async () => {
+            const {
+                data: { shops, categories },
+            } = await ApiClient("/api/owner/products/create");
+            setShops([...shops]);
+            setCategories([...categories]);
+        })();
+    }, []);
 
     return {
         inputs,
+        shops,
+        categories,
         handleSubmit,
         handleChangeShop,
         handleChangeName,

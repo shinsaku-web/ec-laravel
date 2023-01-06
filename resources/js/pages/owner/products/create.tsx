@@ -13,6 +13,8 @@ import { useProductCreate } from "../../../hooks/useProductCreate";
 export const ProductCreatePage = () => {
     const {
         inputs,
+        shops,
+        categories,
         handleSubmit,
         handleChangeShop,
         handleChangeName,
@@ -49,10 +51,12 @@ export const ProductCreatePage = () => {
                         aria-label="select shop"
                         onChange={handleChangeShop}
                     >
-                        <option>Open this select menu</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
+                        <option>Shopを選択</option>
+                        {shops.map((shop) => (
+                            <option key={shop.id} value={shop.id}>
+                                {shop.name}
+                            </option>
+                        ))}
                     </FormSelect>
                 </FormGroup>
 
@@ -88,7 +92,7 @@ export const ProductCreatePage = () => {
                     <FormLabel>販売ステータス</FormLabel>
                     <FormCheck
                         type="switch"
-                        label="販売中"
+                        label={inputs?.is_selling ? "販売中" : "販売停止"}
                         onChange={handleChangeIsSelling}
                         checked={inputs?.is_selling}
                     />
@@ -109,10 +113,12 @@ export const ProductCreatePage = () => {
                         aria-label="select category"
                         onChange={handleChangeCategory}
                     >
-                        <option>Open this select menu</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
+                        <option>Categoryを選択</option>
+                        {categories.map((category) => (
+                            <option key={category.id} value={category.id}>
+                                {category.name}
+                            </option>
+                        ))}
                     </FormSelect>
                 </FormGroup>
 
