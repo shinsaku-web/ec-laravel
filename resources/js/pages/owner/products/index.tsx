@@ -2,10 +2,10 @@ import { useState, useEffect } from "react";
 import { Row, Col, Button } from "react-bootstrap";
 import { ApiClient } from "../../../apis/ApiClient";
 import { CardPrimary } from "../../../components/molecules/CardPrimary";
-import { Product } from "../../../types/product";
+import { ProductIndex } from "../../../types/product";
 
 export const ProductsIndexPage = () => {
-    const [products, setProducts] = useState<Product[]>([]);
+    const [products, setProducts] = useState<ProductIndex[]>([]);
     useEffect(() => {
         (async () => {
             try {
@@ -40,9 +40,9 @@ export const ProductsIndexPage = () => {
                         <CardPrimary
                             images={[
                                 product.image_first.filename || "",
-                                product.image2 || "",
-                                product.image3 || "",
-                                product.image4 || "",
+                                product.image_second.filename || "",
+                                product.image_third.filename || "",
+                                product.image_fourth.filename || "",
                             ]}
                             name={product.name}
                             information={product.information}
