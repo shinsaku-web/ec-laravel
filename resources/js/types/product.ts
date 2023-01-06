@@ -18,10 +18,10 @@ export type ProductIndex = Product & {
     image2: string | null;
     image3: string | null;
     image4: string | null;
-    image_first: Image;
-    image_second: Image;
-    image_third: Image;
-    image_fourth: Image;
+    image_first: Image | null;
+    image_second: Image | null;
+    image_third: Image | null;
+    image_fourth: Image | null;
 };
 
 export type ProductInput = Product & {

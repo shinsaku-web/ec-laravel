@@ -39,10 +39,10 @@ export const ProductsIndexPage = () => {
                     <Col key={idx}>
                         <CardPrimary
                             images={[
-                                product.image_first.filename || "",
-                                product.image_second.filename || "",
-                                product.image_third.filename || "",
-                                product.image_fourth.filename || "",
+                                product.image_first?.filename || "",
+                                product.image_second?.filename || "",
+                                product.image_third?.filename || "",
+                                product.image_fourth?.filename || "",
                             ]}
                             name={product.name}
                             information={product.information}

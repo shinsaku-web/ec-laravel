@@ -20,6 +20,7 @@ export const ProductCreatePage = () => {
         handleChangePrice,
         handleChangeIsSelling,
         handleChangeSortOrder,
+        handleChangeCategory,
         handleChangeImage,
         error,
     } = useProductCreate();
@@ -46,7 +47,7 @@ export const ProductCreatePage = () => {
                     <FormLabel>Shopを選択</FormLabel>
                     <FormSelect
                         aria-label="select shop"
-                        // onChange={handleChangeShop}
+                        onChange={handleChangeShop}
                     >
                         <option>Open this select menu</option>
                         <option value="1">One</option>
@@ -106,7 +107,7 @@ export const ProductCreatePage = () => {
                     <FormLabel>Category</FormLabel>
                     <FormSelect
                         aria-label="select category"
-                        // onChange={handleChangeCategory}
+                        onChange={handleChangeCategory}
                     >
                         <option>Open this select menu</option>
                         <option value="1">One</option>

@@ -24,10 +24,9 @@ export const useProductCreate = () => {
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         setError(true);
-        console.log("submit");
     };
-    const handleChangeShop = (e: React.ChangeEvent<HTMLInputElement>) => {
-        // console.log(e.target.value);
+    const handleChangeShop = (e: React.ChangeEvent<HTMLSelectElement>) => {
+        setInputs((prev) => ({ ...prev, shop_id: parseInt(e.target.value) }));
     };
     const handleChangeName = (e: React.ChangeEvent<HTMLInputElement>) => {
         setInputs((prev) => ({ ...prev, name: e.target.value }));
@@ -45,6 +44,12 @@ export const useProductCreate = () => {
         setInputs((prev) => ({
             ...prev,
             sort_order: parseInt(e.target.value),
+        }));
+    };
+    const handleChangeCategory = (e: React.ChangeEvent<HTMLSelectElement>) => {
+        setInputs((prev) => ({
+            ...prev,
+            secondary_category_id: parseInt(e.target.value),
         }));
     };
     const handleChangeImage = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -80,6 +85,7 @@ export const useProductCreate = () => {
         handleChangePrice,
         handleChangeIsSelling,
         handleChangeSortOrder,
+        handleChangeCategory,
         handleChangeImage,
         error,
     };
