@@ -7,7 +7,7 @@ import {
     FormLabel,
 } from "react-bootstrap";
 import { Form } from "react-router-dom";
-import { useShopEdit } from "../../../hooks/useShopEdit";
+import { useShopUpdate } from "../../../hooks/useShopUpdate";
 
 export const ShopUpdate = () => {
     const {
@@ -18,7 +18,7 @@ export const ShopUpdate = () => {
         handleChangeStatus,
         handleSubmit,
         error,
-    } = useShopEdit();
+    } = useShopUpdate();
 
     return (
         <div>

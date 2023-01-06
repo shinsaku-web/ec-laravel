@@ -10,7 +10,7 @@ interface Input {
     status: boolean;
 }
 
-export const useShopEdit = () => {
+export const useShopUpdate = () => {
     const initState = {
         name: "",
         information: "",
