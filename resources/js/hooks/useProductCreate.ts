@@ -12,13 +12,13 @@ type Category = {
 
 export const useProductCreate = () => {
     const initState = {
-        shop_id: 1, //取得してくること
+        shop_id: -1,
         name: "",
         information: "",
         price: 0,
         is_selling: false,
         sort_order: 1,
-        secondary_category_id: 1, //取得してくること
+        secondary_category_id: -1,
         image1: null,
         image2: null,
         image3: null,
@@ -29,11 +29,17 @@ export const useProductCreate = () => {
     const [shops, setShops] = useState<Pick<Shop, "id" | "name">[]>([]);
     const [categories, setCategories] = useState<Category[]>([]);
 
-    console.log(inputs);
+    // console.log(inputs);
 
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        setError(true);
+        try {
+            await ApiClient.post("/api/owner/products", inputs);
+            console.log("登録しました");
+        } catch (error) {
+            console.error(error);
+            setError(true);
+        }
     };
     const handleChangeShop = (e: React.ChangeEvent<HTMLSelectElement>) => {
         setInputs((prev) => ({ ...prev, shop_id: parseInt(e.target.value) }));
