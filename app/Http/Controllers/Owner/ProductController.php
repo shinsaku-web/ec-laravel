@@ -78,14 +78,10 @@ class ProductController extends Controller
                 "is_selling" => $request->is_selling,
                 "sort_order" => $request->sort_order,
                 "secondary_category_id" => $request->secondary_category_id,
-                "image1" => $request->image1 ?
-                    str_replace("public/products/", "", Storage::putFile("public/products", $request->image1)) : null,
-                "image2" => $request->image2 ?
-                    str_replace("public/products/", "", Storage::putFile("public/products", $request->image2)) : null,
-                "image3" => $request->image3 ?
-                    str_replace("public/products/", "", Storage::putFile("public/products", $request->image3)) : null,
-                "image4" => $request->image4 ?
-                    str_replace("public/products/", "", Storage::putFile("public/products", $request->image4)) : null,
+                "image1" => $request->image1,
+                "image2" => $request->image2,
+                "image3" => $request->image3,
+                "image4" => $request->image4,
             ]);
             return response()->json(["message" => "登録に成功しました。"]);
         } catch (\Throwable $th) {

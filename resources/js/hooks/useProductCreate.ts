@@ -72,24 +72,7 @@ export const useProductCreate = () => {
         }));
     };
     const handleChangeImage = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const files = e.target.files;
-        if (files && files[0]) {
-            setInputs((prev) => ({
-                ...prev,
-                image1: files[0] || null,
-                image2: files[1] || null,
-                image3: files[2] || null,
-                image4: files[3] || null,
-            }));
-        } else {
-            setInputs((prev) => ({
-                ...prev,
-                image1: null,
-                image2: null,
-                image3: null,
-                image4: null,
-            }));
-        }
+        console.log("画像仮");
     };
 
     useEffect(() => {
