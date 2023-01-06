@@ -78,10 +78,16 @@ export const useProductCreate = () => {
     useEffect(() => {
         (async () => {
             const {
-                data: { shops, categories },
+                data: { shops, categories, images },
             } = await ApiClient("/api/owner/products/create");
             setShops([...shops]);
             setCategories([...categories]);
+            console.log(categories);
+            console.log(images);
+            console.log("カテゴリー選択のグループ化対応");
+            console.log(
+                "eagar loading 時のカラムを絞る、余計なデータは取ってこないように修正"
+            );
         })();
     }, []);
 

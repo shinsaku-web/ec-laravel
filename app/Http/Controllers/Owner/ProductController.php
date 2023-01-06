@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
 use App\Models\Owner;
+use App\Models\PrimaryCategory;
 use App\Models\Product;
 use App\Models\SecondaryCategory;
 use App\Models\Shop;
@@ -56,9 +57,10 @@ class ProductController extends Controller
      */
     public function create()
     {
-        $shops = Shop::where("owner_id", Auth::id())->get(["id", "name"]);
-        $categories = SecondaryCategory::all(["id", "name"]);
-        return response()->json(["shops" => $shops, "categories" => $categories]);
+        $shops = Shop::where("owner_id", Auth::id())->select(["id", "name"])->get();
+        $categories = PrimaryCategory::with("secondary")->get();
+        $images = Owner::where("id", Auth::id())->with("image")->get();
+        return response()->json(["shops" => $shops, "categories" => $categories, "images" => $images]);
     }
 
     /**
