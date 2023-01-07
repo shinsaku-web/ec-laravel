@@ -8,11 +8,17 @@ interface Props {
     isShow: boolean;
     onHide: () => void;
     imageList: Image[];
+    setImage: React.Dispatch<
+        React.SetStateAction<Pick<Image, "id" | "filename" | "title">[]>
+    >;
 }
 
-export const ModalSelectImage = ({ isShow, onHide, imageList }: Props) => {
-    console.log(imageList);
-
+export const ModalSelectImage = ({
+    isShow,
+    onHide,
+    imageList,
+    setImage,
+}: Props) => {
     return (
         <Modal
             show={isShow}
@@ -27,13 +33,15 @@ export const ModalSelectImage = ({ isShow, onHide, imageList }: Props) => {
                 </Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                <br />
+                <div style={{ height: 8 }} />
                 <Row xs={2} md={3} lg={4} className="g-4">
                     {imageList.map((image) => (
                         <Col key={image.id}>
                             <CardModalImage
+                                id={image.id}
                                 filename={image.filename}
                                 title={image.title}
+                                setImage={setImage}
                             />
                         </Col>
                     ))}

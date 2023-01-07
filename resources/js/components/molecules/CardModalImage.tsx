@@ -1,18 +1,34 @@
 import { useState } from "react";
 import { AiOutlineCheckCircle } from "react-icons/ai";
+import { Image } from "../../types/image";
 
 interface Props {
+    id: number;
     filename: string;
     title: string | null;
+    setImage: React.Dispatch<
+        React.SetStateAction<Pick<Image, "id" | "filename" | "title">[]>
+    >;
 }
 
-export const CardModalImage = ({ filename, title }: Props) => {
+export const CardModalImage = ({ id, filename, title, setImage }: Props) => {
     const [isSelected, setIsSelected] = useState<boolean>(false);
+    const handleOnClick = () => {
+        setIsSelected(!isSelected);
+        setImage((prev) => [
+            ...prev,
+            {
+                id,
+                filename,
+                title,
+            },
+        ]);
+    };
     return (
         <div
             className="text-center border"
             style={{ cursor: "pointer", position: "relative" }}
-            onClick={() => setIsSelected(!isSelected)}
+            onClick={handleOnClick}
         >
             <div
                 style={{

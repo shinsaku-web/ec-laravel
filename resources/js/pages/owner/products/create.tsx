@@ -7,10 +7,12 @@ import {
     Button,
     FormCheck,
     FormSelect,
+    Row,
 } from "react-bootstrap";
 import { Form } from "react-router-dom";
 import { ModalSelectImage } from "../../../components/molecules/ModalSelectImage";
 import { useProductCreate } from "../../../hooks/useProductCreate";
+import { Image } from "../../../types/image";
 
 export const ProductCreatePage = () => {
     const {
@@ -31,6 +33,9 @@ export const ProductCreatePage = () => {
     } = useProductCreate();
 
     const [modalShow, setModalShow] = useState<boolean>(false);
+    const [selectedImages, setSelectedImages] = useState<
+        Pick<Image, "id" | "filename" | "title">[]
+    >([]);
 
     return (
         <div style={{ maxWidth: 600, margin: "auto" }}>
@@ -137,21 +142,23 @@ export const ProductCreatePage = () => {
 
                 <FormGroup className="mb-3" controlId="files">
                     <FormLabel>Images(4枚まで)</FormLabel>
-                    {/* <FormControl
-                        type="file"
-                        multiple
-                        accept="image/png,image/jpeg,image/jpg"
-                        onChange={handleChangeImage}
-                    /> */}
-                    <br />
-                    <img
-                        src=""
-                        alt=""
-                        width={150}
-                        height={100}
-                        style={{ objectFit: "contain" }}
-                    />
-                    <div style={{ height: 16 }} />
+                    <Row xs={2} md={3} className="g-4">
+                        {selectedImages.map((image) => (
+                            <div key={image.id} className="text-center">
+                                <img
+                                    src={`/storage/products/${image.filename}`}
+                                    alt={image.title || ""}
+                                    width={150}
+                                    height={100}
+                                    style={{ objectFit: "contain" }}
+                                />
+                                <figcaption>
+                                    {image.title || "タイトル未設定"}
+                                </figcaption>
+                            </div>
+                        ))}
+                    </Row>
+                    <div style={{ height: 24 }} />
                     <Button
                         onClick={() => setModalShow(true)}
                         variant="outline-primary"
@@ -162,6 +169,7 @@ export const ProductCreatePage = () => {
                         isShow={modalShow}
                         onHide={() => setModalShow(false)}
                         imageList={imageList}
+                        setImage={setSelectedImages}
                     />
                 </FormGroup>
 
