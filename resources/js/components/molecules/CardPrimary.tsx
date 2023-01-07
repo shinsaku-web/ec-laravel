@@ -30,7 +30,11 @@ export const CardPrimary = ({
                 <Card>
                     <Card.Img
                         variant="top"
-                        src={"/storage/products/" + images[0]}
+                        src={
+                            images[0] //分割代入にしてもいいかも
+                                ? "/storage/products/" + images[0]
+                                : "/images/no_image.jpg"
+                        }
                         width={300}
                         height={200}
                         style={{ objectFit: "cover" }}
