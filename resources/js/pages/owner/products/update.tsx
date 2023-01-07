@@ -178,7 +178,7 @@ export const ProductUpdatePage = () => {
 
                 <div className="d-grid pt-4">
                     <Button variant="primary" type="submit">
-                        登録
+                        変更する
                     </Button>
                 </div>
             </Form>
