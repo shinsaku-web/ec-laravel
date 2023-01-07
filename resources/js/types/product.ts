@@ -18,4 +18,10 @@ export type ProductIndex = Product & {
     image_second: Image | null;
     image_third: Image | null;
     image_fourth: Image | null;
+    category: {
+        id: number;
+        name: string;
+        primary_category_id: number;
+        sort_order: number;
+    };
 };

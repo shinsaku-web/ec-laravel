@@ -48,7 +48,7 @@ export const ProductsIndexPage = () => {
                             information={product.information}
                             is_selling={product.is_selling}
                             price={product.price}
-                            category={"仮カテゴリー"}
+                            category={product.category.name}
                             userType="owner"
                         />
                     </Col>

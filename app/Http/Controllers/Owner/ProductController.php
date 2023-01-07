@@ -45,6 +45,7 @@ class ProductController extends Controller
                 "imageSecond",
                 "imageThird",
                 "imageFourth",
+                "category"
             ]
         ])->where("id", Auth::id())->get();
         return response()->json($ownerInfo[0]->shop->product);

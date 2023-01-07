@@ -30,7 +30,7 @@ class Product extends Model
 
     public function category()
     {
-        return $this->belongsTo(SecondaryCategory::class);
+        return $this->belongsTo(SecondaryCategory::class, "secondary_category_id");
     }
 
     public function imageFirst()
