@@ -115,9 +115,16 @@ export const ProductCreatePage = () => {
                     >
                         <option>Categoryを選択</option>
                         {categories.map((category) => (
-                            <option key={category.id} value={category.id}>
-                                {category.name}
-                            </option>
+                            <optgroup key={category.id} label={category.name}>
+                                {category.secondary.map((category2) => (
+                                    <option
+                                        key={category2.id}
+                                        value={category2.id}
+                                    >
+                                        {category2.name}
+                                    </option>
+                                ))}
+                            </optgroup>
                         ))}
                     </FormSelect>
                 </FormGroup>

@@ -8,6 +8,12 @@ type Inputs = Omit<ProductInput, "id" | "created_at" | "updated_at">;
 type Category = {
     id: number;
     name: string;
+    secondary: {
+        id: number;
+        name: string;
+        primary_category_id: number;
+        sort_order: number;
+    }[];
 };
 
 export const useProductCreate = () => {
@@ -82,9 +88,7 @@ export const useProductCreate = () => {
             } = await ApiClient("/api/owner/products/create");
             setShops([...shops]);
             setCategories([...categories]);
-            console.log(categories);
             console.log(images);
-            console.log("カテゴリー選択のグループ化対応");
             console.log(
                 "eagar loading 時のカラムを絞る、余計なデータは取ってこないように修正"
             );
