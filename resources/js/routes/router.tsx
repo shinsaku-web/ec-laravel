@@ -2,7 +2,6 @@ import { createBrowserRouter } from "react-router-dom";
 import { IndexPage } from "../pages";
 import { ImagePage } from "../pages/owner/images";
 import { ShopsPage } from "../pages/owner/shops";
-import { ProductPage } from "../pages/product/[id]";
 import { CartPage } from "../pages/cart";
 import { RegisterUserPage } from "../pages/register";
 import { LoginUserPage } from "../pages/login";
@@ -29,10 +28,6 @@ export const router = createBrowserRouter([
     {
         path: "/404",
         element: <NotFound />,
-    },
-    {
-        path: "/product/:id",
-        element: <ProductPage />,
     },
     {
         path: "/cart",
