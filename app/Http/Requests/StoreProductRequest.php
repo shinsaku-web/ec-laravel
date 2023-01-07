@@ -32,6 +32,10 @@ class StoreProductRequest extends FormRequest
             "is_selling" => "required | boolean",
             "sort_order" => "required | max:8",
             "secondary_category_id" => "required | max:8",
+            "image1" => "integer",
+            "image2" => "integer",
+            "image3" => "integer",
+            "image4" => "integer",
         ];
     }
 }
