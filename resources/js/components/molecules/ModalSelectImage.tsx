@@ -46,7 +46,7 @@ export const ModalSelectImage = ({
                                 filename={image.filename}
                                 title={image.title}
                                 setImage={setImage}
-                                selected={() => isSelected(image.id)}
+                                selected={isSelected(image.id)}
                             />
                         </Col>
                     ))}

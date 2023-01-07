@@ -22,14 +22,18 @@ export const CardModalImage = ({
     const [isSelected, setIsSelected] = useState<boolean>(selected);
     const handleOnClick = () => {
         setIsSelected(!isSelected);
-        setImage((prev) => [
-            ...prev,
-            {
-                id,
-                filename,
-                title,
-            },
-        ]);
+        if (!selected) {
+            setImage((prev) => [
+                ...prev,
+                {
+                    id,
+                    filename,
+                    title,
+                },
+            ]);
+        } else {
+            setImage((prev) => [...prev.filter((image) => image.id !== id)]);
+        }
     };
     return (
         <div
