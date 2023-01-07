@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { ApiClient } from "../apis/ApiClient";
 import { Image } from "../types/image";
 import { Product } from "../types/product";
@@ -37,6 +37,7 @@ export const useProductUpdate = () => {
     const [selectedImages, setSelectedImages] = useState<
         Pick<Image, "id" | "filename" | "title">[]
     >([]);
+    const { id } = useParams();
     const navigate = useNavigate();
 
     const [image1, image2, image3, image4] = selectedImages.map(
@@ -45,14 +46,13 @@ export const useProductUpdate = () => {
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         try {
-            const { data } = await ApiClient.post("/api/owner/products", {
+            await ApiClient.put("/api/owner/products" + id, {
                 ...inputs,
                 image1: typeof image1 === "number" ? image1 : null,
                 image2: typeof image2 === "number" ? image2 : null,
                 image3: typeof image3 === "number" ? image3 : null,
                 image4: typeof image4 === "number" ? image4 : null,
             });
-            console.log(data);
             navigate("/owner/products");
         } catch (error) {
             console.error(error);
@@ -90,11 +90,31 @@ export const useProductUpdate = () => {
     useEffect(() => {
         (async () => {
             const {
-                data: { shops, categories, images },
-            } = await ApiClient("/api/owner/products/create");
+                data: { shops, categories, images, product },
+            } = await ApiClient(`/api/owner/products/${id}/edit`);
+            const {
+                shop_id,
+                name,
+                information,
+                price,
+                is_selling,
+                sort_order,
+                secondary_category_id,
+            }: Product = product;
+
             setShops([...shops]);
             setCategories([...categories]);
             setImageList([...images]);
+            setInputs((prev) => ({
+                ...prev,
+                shop_id,
+                name,
+                information,
+                price,
+                is_selling,
+                sort_order,
+                secondary_category_id,
+            }));
         })();
     }, []);
 

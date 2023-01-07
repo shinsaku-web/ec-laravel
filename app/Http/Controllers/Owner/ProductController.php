@@ -21,9 +21,9 @@ class ProductController extends Controller
         $this->middleware("auth:owners");
 
         $this->middleware(function ($request, $next) {
-            $product_id = $request->route()->parameter('product');
-            if (!is_null($product_id)) {
-                $productOwnerId = Product::findOrFail($product_id)->shop->owner->id;
+            $product = $request->route()->parameter('product');
+            if (!is_null($product)) {
+                $productOwnerId = Product::findOrFail($product->id)->shop->owner->id;
                 $ownerId = Auth::id();
                 if ($productOwnerId !== $ownerId) {
                     return response()->json(["message" => "productが存在しません"], Response::HTTP_NOT_FOUND);
@@ -111,7 +111,10 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        //
+        $shops = Shop::where("owner_id", Auth::id())->select(["id", "name"])->get();
+        $categories = PrimaryCategory::with("secondary")->get();
+        $owners = Owner::where("id", Auth::id())->with("image")->select()->get();
+        return response()->json(["shops" => $shops, "categories" => $categories, "images" => $owners[0]->image, "product" => $product]);
     }
 
     /**
