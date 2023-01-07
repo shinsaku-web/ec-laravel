@@ -25,7 +25,7 @@ class Product extends Model
 
     public function shop()
     {
-        return $this->belongsTo(Owner::class);
+        return $this->belongsTo(Shop::class);
     }
 
     public function category()
