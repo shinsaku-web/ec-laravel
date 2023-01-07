@@ -44,6 +44,7 @@ export const useProductCreate = () => {
     const navigate = useNavigate();
 
     // console.log(inputs);
+    console.log("画像投稿まで作ればOK");
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -94,8 +95,7 @@ export const useProductCreate = () => {
             } = await ApiClient("/api/owner/products/create");
             setShops([...shops]);
             setCategories([...categories]);
-            const registeredImage = images[0].image;
-            setImageList([...registeredImage]);
+            setImageList([...images]);
         })();
     }, []);
 
