@@ -126,7 +126,7 @@ class ProductController extends Controller
      */
     public function update(UpdateProductRequest $request, Product $product)
     {
-        //
+        return response()->json([$request, $product]);
     }
 
     /**
