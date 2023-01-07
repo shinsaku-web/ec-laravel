@@ -49,6 +49,7 @@ export const ProductsIndexPage = () => {
                             is_selling={product.is_selling}
                             price={product.price}
                             category={product.category.name}
+                            href={"/owner/products/update/" + product.id}
                             userType="owner"
                         />
                     </Col>

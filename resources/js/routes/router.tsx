@@ -19,6 +19,7 @@ import { NotFound } from "../pages/404";
 import { CreateImages } from "../pages/owner/images/create";
 import { UpdateImages } from "../pages/owner/images/update";
 import { ShopUpdate } from "../pages/owner/shops/update";
+import { ProductUpdatePage } from "../pages/owner/products/update";
 
 export const router = createBrowserRouter([
     {
@@ -64,6 +65,10 @@ export const router = createBrowserRouter([
             {
                 path: "/owner/products/create",
                 element: <ProductCreatePage />,
+            },
+            {
+                path: "/owner/products/update/:id",
+                element: <ProductUpdatePage />,
             },
             {
                 path: "/owner/images",

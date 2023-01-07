@@ -10,6 +10,7 @@ interface Props {
     is_selling: boolean;
     price: number;
     category: string;
+    href: string;
     userType: USER_TYPE;
 }
 
@@ -20,6 +21,7 @@ export const CardPrimary = ({
     is_selling,
     price,
     category,
+    href,
     userType,
 }: Props) => {
     switch (userType) {
@@ -57,7 +59,13 @@ export const CardPrimary = ({
                             </Badge>
                         )}
                         <div style={{ height: 16 }} />
-                        <Button variant="primary">編集する</Button>
+                        <Button
+                            style={{ color: "#fff" }}
+                            href={href}
+                            variant="primary"
+                        >
+                            編集する
+                        </Button>
                     </Card.Body>
                 </Card>
             );
@@ -87,7 +95,13 @@ export const CardPrimary = ({
                                 販売終了
                             </Badge>
                         )}
-                        <Button variant="primary">カートに入れる</Button>
+                        <Button
+                            style={{ color: "#fff" }}
+                            href={href}
+                            variant="primary"
+                        >
+                            カートに入れる
+                        </Button>
                     </Card.Body>
                 </Card>
             );

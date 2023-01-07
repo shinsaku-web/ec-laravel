@@ -18,7 +18,7 @@ type Category = {
     }[];
 };
 
-export const useProductCreate = () => {
+export const useProductUpdate = () => {
     const initState = {
         shop_id: -1,
         name: "",
