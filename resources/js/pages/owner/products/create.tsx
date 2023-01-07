@@ -17,6 +17,7 @@ export const ProductCreatePage = () => {
         inputs,
         shops,
         categories,
+        imageList,
         handleSubmit,
         handleChangeShop,
         handleChangeName,
@@ -160,6 +161,7 @@ export const ProductCreatePage = () => {
                     <ModalSelectImage
                         isShow={modalShow}
                         onHide={() => setModalShow(false)}
+                        imageList={imageList}
                     />
                 </FormGroup>
 

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ApiClient } from "../apis/ApiClient";
+import { Image } from "../types/image";
 import { ProductInput } from "../types/product";
 import { Shop } from "../types/shop";
 
@@ -35,6 +36,7 @@ export const useProductCreate = () => {
     const [error, setError] = useState<boolean>(false);
     const [shops, setShops] = useState<Pick<Shop, "id" | "name">[]>([]);
     const [categories, setCategories] = useState<Category[]>([]);
+    const [imageList, setImageList] = useState<Image[]>([]);
     const navigate = useNavigate();
 
     // console.log(inputs);
@@ -91,7 +93,8 @@ export const useProductCreate = () => {
             } = await ApiClient("/api/owner/products/create");
             setShops([...shops]);
             setCategories([...categories]);
-            console.log(images);
+            const registeredImage = images[0].image;
+            setImageList([...registeredImage]);
         })();
     }, []);
 
@@ -99,6 +102,7 @@ export const useProductCreate = () => {
         inputs,
         shops,
         categories,
+        imageList,
         handleSubmit,
         handleChangeShop,
         handleChangeName,

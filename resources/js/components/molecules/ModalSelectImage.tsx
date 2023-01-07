@@ -1,13 +1,17 @@
 import { Col, Row } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
+import { Image } from "../../types/image";
 
 interface Props {
     isShow: boolean;
     onHide: () => void;
+    imageList: Image[];
 }
 
-export const ModalSelectImage = ({ isShow, onHide }: Props) => {
+export const ModalSelectImage = ({ isShow, onHide, imageList }: Props) => {
+    console.log(imageList);
+
     return (
         <Modal
             show={isShow}
@@ -18,23 +22,29 @@ export const ModalSelectImage = ({ isShow, onHide }: Props) => {
         >
             <Modal.Header closeButton>
                 <Modal.Title id="contained-modal-title-vcenter">
-                    Modal heading
+                    画像を選択
                 </Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                <h4 className="mb-3">画像を選択</h4>
+                <br />
                 <Row xs={2} md={3} lg={4} className="g-4">
-                    {Array.from({ length: 5 }).map((_, idx) => (
-                        <Col key={idx}>
-                            <div className="text-center">
+                    {imageList.map((image) => (
+                        <Col key={image.id}>
+                            <div
+                                className="text-center border"
+                                style={{ cursor: "pointer" }}
+                            >
                                 <img
-                                    src=""
-                                    alt=""
+                                    src={`/storage/products/${image.filename}`}
+                                    alt={image.title || ""}
                                     width={75}
                                     height={50}
                                     style={{ objectFit: "contain" }}
+                                    className="mb-3"
                                 />
-                                <figcaption>タイトル</figcaption>
+                                <figcaption>
+                                    {image.title || "タイトル未設定"}
+                                </figcaption>
                             </div>
                         </Col>
                     ))}
