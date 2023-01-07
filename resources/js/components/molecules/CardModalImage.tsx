@@ -9,10 +9,17 @@ interface Props {
     setImage: React.Dispatch<
         React.SetStateAction<Pick<Image, "id" | "filename" | "title">[]>
     >;
+    selected: boolean;
 }
 
-export const CardModalImage = ({ id, filename, title, setImage }: Props) => {
-    const [isSelected, setIsSelected] = useState<boolean>(false);
+export const CardModalImage = ({
+    id,
+    filename,
+    title,
+    setImage,
+    selected,
+}: Props) => {
+    const [isSelected, setIsSelected] = useState<boolean>(selected);
     const handleOnClick = () => {
         setIsSelected(!isSelected);
         setImage((prev) => [

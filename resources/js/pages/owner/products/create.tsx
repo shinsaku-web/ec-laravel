@@ -169,6 +169,7 @@ export const ProductCreatePage = () => {
                         isShow={modalShow}
                         onHide={() => setModalShow(false)}
                         imageList={imageList}
+                        selectedImages={selectedImages}
                         setImage={setSelectedImages}
                     />
                 </FormGroup>

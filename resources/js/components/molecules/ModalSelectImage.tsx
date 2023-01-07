@@ -8,6 +8,7 @@ interface Props {
     isShow: boolean;
     onHide: () => void;
     imageList: Image[];
+    selectedImages: Pick<Image, "id" | "filename" | "title">[];
     setImage: React.Dispatch<
         React.SetStateAction<Pick<Image, "id" | "filename" | "title">[]>
     >;
@@ -17,8 +18,11 @@ export const ModalSelectImage = ({
     isShow,
     onHide,
     imageList,
+    selectedImages,
     setImage,
 }: Props) => {
+    const selectedIDList = selectedImages.map((image) => image.id);
+    const isSelected = (id: number) => selectedIDList.includes(id);
     return (
         <Modal
             show={isShow}
@@ -42,6 +46,7 @@ export const ModalSelectImage = ({
                                 filename={image.filename}
                                 title={image.title}
                                 setImage={setImage}
+                                selected={() => isSelected(image.id)}
                             />
                         </Col>
                     ))}
