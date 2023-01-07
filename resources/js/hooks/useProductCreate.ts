@@ -2,10 +2,10 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ApiClient } from "../apis/ApiClient";
 import { Image } from "../types/image";
-import { ProductInput } from "../types/product";
+import { Product } from "../types/product";
 import { Shop } from "../types/shop";
 
-type Inputs = Omit<ProductInput, "id" | "created_at" | "updated_at">;
+type Inputs = Omit<Product, "id" | "created_at" | "updated_at">;
 
 type Category = {
     id: number;
@@ -27,10 +27,10 @@ export const useProductCreate = () => {
         is_selling: false,
         sort_order: 1,
         secondary_category_id: -1,
-        image1: null,
-        image2: null,
-        image3: null,
-        image4: null,
+        // image1: null,
+        // image2: null,
+        // image3: null,
+        // image4: null,
     };
     const [inputs, setInputs] = useState<Inputs>(initState);
     const [error, setError] = useState<boolean>(false);
@@ -43,16 +43,19 @@ export const useProductCreate = () => {
     >([]);
     const navigate = useNavigate();
 
-    // console.log(inputs);
-    console.log("画像投稿まで作ればOK");
-
+    const [image1, image2, image3, image4] = selectedImages.map(
+        (image) => image.id
+    );
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         try {
-            const { data } = await ApiClient.post(
-                "/api/owner/products",
-                inputs
-            );
+            const { data } = await ApiClient.post("/api/owner/products", {
+                ...inputs,
+                image1: typeof image1 === "number" ? image1 : null,
+                image2: typeof image2 === "number" ? image2 : null,
+                image3: typeof image3 === "number" ? image3 : null,
+                image4: typeof image4 === "number" ? image4 : null,
+            });
             console.log(data);
             navigate("/owner/products");
         } catch (error) {
