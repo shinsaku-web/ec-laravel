@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { ApiClient } from "../apis/ApiClient";
 import { ProductInput } from "../types/product";
 import { Shop } from "../types/shop";
@@ -34,6 +35,7 @@ export const useProductCreate = () => {
     const [error, setError] = useState<boolean>(false);
     const [shops, setShops] = useState<Pick<Shop, "id" | "name">[]>([]);
     const [categories, setCategories] = useState<Category[]>([]);
+    const navigate = useNavigate();
 
     // console.log(inputs);
 
@@ -45,6 +47,7 @@ export const useProductCreate = () => {
                 inputs
             );
             console.log(data);
+            navigate("/owner/products");
         } catch (error) {
             console.error(error);
             setError(true);
