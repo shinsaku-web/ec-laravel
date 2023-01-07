@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
     Alert,
     FormGroup,
@@ -8,6 +9,7 @@ import {
     FormSelect,
 } from "react-bootstrap";
 import { Form } from "react-router-dom";
+import { ModalSelectImage } from "../../../components/molecules/ModalSelectImage";
 import { useProductCreate } from "../../../hooks/useProductCreate";
 
 export const ProductCreatePage = () => {
@@ -26,6 +28,9 @@ export const ProductCreatePage = () => {
         handleChangeImage,
         error,
     } = useProductCreate();
+
+    const [modalShow, setModalShow] = useState<boolean>(false);
+
     return (
         <div style={{ maxWidth: 600, margin: "auto" }}>
             <h3>商品登録</h3>
@@ -131,15 +136,34 @@ export const ProductCreatePage = () => {
 
                 <FormGroup className="mb-3" controlId="files">
                     <FormLabel>Images(4枚まで)</FormLabel>
-                    <FormControl
+                    {/* <FormControl
                         type="file"
                         multiple
                         accept="image/png,image/jpeg,image/jpg"
                         onChange={handleChangeImage}
+                    /> */}
+                    <br />
+                    <img
+                        src=""
+                        alt=""
+                        width={150}
+                        height={100}
+                        style={{ objectFit: "contain" }}
+                    />
+                    <div style={{ height: 16 }} />
+                    <Button
+                        onClick={() => setModalShow(true)}
+                        variant="outline-primary"
+                    >
+                        画像を選択
+                    </Button>
+                    <ModalSelectImage
+                        isShow={modalShow}
+                        onHide={() => setModalShow(false)}
                     />
                 </FormGroup>
 
-                <div className="d-grid pt-2">
+                <div className="d-grid pt-4">
                     <Button variant="primary" type="submit">
                         登録
                     </Button>

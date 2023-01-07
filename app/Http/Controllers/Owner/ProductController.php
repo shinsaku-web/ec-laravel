@@ -59,7 +59,7 @@ class ProductController extends Controller
     {
         $shops = Shop::where("owner_id", Auth::id())->select(["id", "name"])->get();
         $categories = PrimaryCategory::with("secondary")->get();
-        $images = Owner::where("id", Auth::id())->with("image")->get();
+        $images = Owner::where("id", Auth::id())->with("image")->select()->get();
         return response()->json(["shops" => $shops, "categories" => $categories, "images" => $images]);
     }
 

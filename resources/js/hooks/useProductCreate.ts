@@ -92,9 +92,6 @@ export const useProductCreate = () => {
             setShops([...shops]);
             setCategories([...categories]);
             console.log(images);
-            console.log(
-                "eagar loading 時のカラムを絞る、余計なデータは取ってこないように修正"
-            );
         })();
     }, []);
 
