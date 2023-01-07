@@ -1,4 +1,3 @@
-import { useState } from "react";
 import {
     Alert,
     FormGroup,
@@ -12,7 +11,6 @@ import {
 import { Form } from "react-router-dom";
 import { ModalSelectImage } from "../../../components/molecules/ModalSelectImage";
 import { useProductCreate } from "../../../hooks/useProductCreate";
-import { Image } from "../../../types/image";
 
 export const ProductCreatePage = () => {
     const {
@@ -28,14 +26,12 @@ export const ProductCreatePage = () => {
         handleChangeIsSelling,
         handleChangeSortOrder,
         handleChangeCategory,
-        handleChangeImage,
+        modalShow,
+        setModalShow,
+        selectedImages,
+        setSelectedImages,
         error,
     } = useProductCreate();
-
-    const [modalShow, setModalShow] = useState<boolean>(false);
-    const [selectedImages, setSelectedImages] = useState<
-        Pick<Image, "id" | "filename" | "title">[]
-    >([]);
 
     return (
         <div style={{ maxWidth: 600, margin: "auto" }}>

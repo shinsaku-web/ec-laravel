@@ -37,6 +37,10 @@ export const useProductCreate = () => {
     const [shops, setShops] = useState<Pick<Shop, "id" | "name">[]>([]);
     const [categories, setCategories] = useState<Category[]>([]);
     const [imageList, setImageList] = useState<Image[]>([]);
+    const [modalShow, setModalShow] = useState<boolean>(false);
+    const [selectedImages, setSelectedImages] = useState<
+        Pick<Image, "id" | "filename" | "title">[]
+    >([]);
     const navigate = useNavigate();
 
     // console.log(inputs);
@@ -82,9 +86,6 @@ export const useProductCreate = () => {
             secondary_category_id: parseInt(e.target.value),
         }));
     };
-    const handleChangeImage = (e: React.ChangeEvent<HTMLInputElement>) => {
-        console.log("画像仮");
-    };
 
     useEffect(() => {
         (async () => {
@@ -111,7 +112,10 @@ export const useProductCreate = () => {
         handleChangeIsSelling,
         handleChangeSortOrder,
         handleChangeCategory,
-        handleChangeImage,
+        modalShow,
+        setModalShow,
+        selectedImages,
+        setSelectedImages,
         error,
     };
 };
