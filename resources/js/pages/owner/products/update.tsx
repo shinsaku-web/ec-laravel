@@ -10,6 +10,7 @@ import {
 } from "react-bootstrap";
 import { Form } from "react-router-dom";
 import { ModalSelectImage } from "../../../components/molecules/ModalSelectImage";
+import { useProductDelete } from "../../../hooks/useProductDelete";
 import { useProductUpdate } from "../../../hooks/useProductUpdate";
 
 export const ProductUpdatePage = () => {
@@ -32,6 +33,8 @@ export const ProductUpdatePage = () => {
         setSelectedImages,
         error,
     } = useProductUpdate();
+
+    const { handleDelete } = useProductDelete();
 
     return (
         <div style={{ maxWidth: 600, margin: "auto" }}>
@@ -182,6 +185,17 @@ export const ProductUpdatePage = () => {
                     </Button>
                 </div>
             </Form>
+            <div style={{ height: 8 }} />
+            <div className="d-grid pt-4">
+                <Button
+                    onClick={handleDelete}
+                    variant="outline-danger"
+                    type="button"
+                >
+                    削除
+                </Button>
+            </div>
+            <div style={{ height: 40 }} />
         </div>
     );
 };
