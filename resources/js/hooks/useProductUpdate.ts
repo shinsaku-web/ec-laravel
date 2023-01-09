@@ -99,7 +99,7 @@ export const useProductUpdate = () => {
     useEffect(() => {
         (async () => {
             const {
-                data: { shops, categories, images, product },
+                data: { shops, categories, images, stock, product },
             } = await ApiClient(`/api/owner/products/${id}/edit`);
             const {
                 shop_id,
@@ -122,6 +122,7 @@ export const useProductUpdate = () => {
                 price,
                 is_selling,
                 sort_order,
+                stock,
                 secondary_category_id,
             }));
         })();

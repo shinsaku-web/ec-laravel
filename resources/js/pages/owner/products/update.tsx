@@ -124,11 +124,12 @@ export const ProductUpdatePage = () => {
                 </FormGroup>
 
                 <FormGroup className="mb-3" controlId="stock">
-                    <FormLabel>Inital Stock</FormLabel>
+                    <FormLabel>Stock Plus Minus</FormLabel>
                     <FormControl
                         type="number"
                         placeholder="1~99"
                         onChange={handleChangeStock}
+                        value={inputs.stock}
                     />
                 </FormGroup>
 

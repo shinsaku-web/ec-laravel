@@ -123,7 +123,8 @@ class ProductController extends Controller
         $shops = Shop::where("owner_id", Auth::id())->select(["id", "name"])->get();
         $categories = PrimaryCategory::with("secondary")->get();
         $owners = Owner::where("id", Auth::id())->with("image")->select()->get();
-        return response()->json(["shops" => $shops, "categories" => $categories, "images" => $owners[0]->image, "product" => $product]);
+        $stock = Stock::where("product_id", $product->id)->sum("quantity");
+        return response()->json(["shops" => $shops, "categories" => $categories, "images" => $owners[0]->image, "stock" => $stock, "product" => $product,]);
     }
 
     /**
@@ -136,19 +137,26 @@ class ProductController extends Controller
     public function update(UpdateProductRequest $request, Product $product)
     {
         try {
-            Product::where('id', $product->id)->update([
-                "shop_id" => $request->shop_id,
-                "name" => $request->name,
-                "information" => $request->information,
-                "price" => $request->price,
-                "is_selling" => $request->is_selling,
-                "sort_order" => $request->sort_order,
-                "secondary_category_id" => $request->secondary_category_id,
-                "image1" => $request->image1,
-                "image2" => $request->image2,
-                "image3" => $request->image3,
-                "image4" => $request->image4,
-            ]);
+            DB::transaction(function () use ($request, $product) {
+                Product::where('id', $product->id)->update([
+                    "shop_id" => $request->shop_id,
+                    "name" => $request->name,
+                    "information" => $request->information,
+                    "price" => $request->price,
+                    "is_selling" => $request->is_selling,
+                    "sort_order" => $request->sort_order,
+                    "secondary_category_id" => $request->secondary_category_id,
+                    "image1" => $request->image1,
+                    "image2" => $request->image2,
+                    "image3" => $request->image3,
+                    "image4" => $request->image4,
+                ]);
+                Stock::create([
+                    "product_id" => $product->id,
+                    "type" => 1,
+                    "quantity" => $request->stock,
+                ]);
+            });
             return response()->json(["message" => "登録に成功しました。"]);
         } catch (\Throwable $th) {
             return response()->json(["message" => $th->getMessage()], Response::HTTP_UNPROCESSABLE_ENTITY);
