@@ -126,7 +126,24 @@ class ProductController extends Controller
      */
     public function update(UpdateProductRequest $request, Product $product)
     {
-        return response()->json([$request, $product]);
+        try {
+            Product::where('id', $product->id)->update([
+                "shop_id" => $request->shop_id,
+                "name" => $request->name,
+                "information" => $request->information,
+                "price" => $request->price,
+                "is_selling" => $request->is_selling,
+                "sort_order" => $request->sort_order,
+                "secondary_category_id" => $request->secondary_category_id,
+                "image1" => $request->image1,
+                "image2" => $request->image2,
+                "image3" => $request->image3,
+                "image4" => $request->image4,
+            ]);
+            return response()->json(["message" => "登録に成功しました。"]);
+        } catch (\Throwable $th) {
+            return response()->json(["message" => $th->getMessage()], Response::HTTP_UNPROCESSABLE_ENTITY);
+        }
     }
 
     /**

@@ -46,16 +46,14 @@ export const useProductUpdate = () => {
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         try {
-            const res = await ApiClient.put("/api/owner/products/" + id, {
+            await ApiClient.put("/api/owner/products/" + id, {
                 ...inputs,
                 image1: typeof image1 === "number" ? image1 : null,
                 image2: typeof image2 === "number" ? image2 : null,
                 image3: typeof image3 === "number" ? image3 : null,
                 image4: typeof image4 === "number" ? image4 : null,
             });
-            console.log(res);
-
-            // navigate("/owner/products");
+            navigate("/owner/products");
         } catch (error) {
             console.error(error);
             setError(true);
