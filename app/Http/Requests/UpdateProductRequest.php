@@ -24,7 +24,19 @@ class UpdateProductRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            "shop_id" => "required",
+            "name" => "required | max:255",
+            "information" =>
+            "required | max:255",
+            "price" => "required | max:8",
+            "is_selling" => "required | boolean",
+            "sort_order" => "required | max:8",
+            "secondary_category_id" => "required | max:8",
+            "quantity" => "required|integer|between:0,99",
+            "image1" => "integer | nullable",
+            "image2" => "integer | nullable",
+            "image3" => "integer | nullable",
+            "image4" => "integer | nullable",
         ];
     }
 }
