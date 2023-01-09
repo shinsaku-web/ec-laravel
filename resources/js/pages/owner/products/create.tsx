@@ -25,6 +25,7 @@ export const ProductCreatePage = () => {
         handleChangePrice,
         handleChangeIsSelling,
         handleChangeSortOrder,
+        handleChangeStock,
         handleChangeCategory,
         modalShow,
         setModalShow,
@@ -111,6 +112,15 @@ export const ProductCreatePage = () => {
                         type="number"
                         placeholder="1"
                         onChange={handleChangeSortOrder}
+                    />
+                </FormGroup>
+
+                <FormGroup className="mb-3" controlId="stock">
+                    <FormLabel>Inital Stock</FormLabel>
+                    <FormControl
+                        type="number"
+                        placeholder="1~99"
+                        onChange={handleChangeStock}
                     />
                 </FormGroup>
 

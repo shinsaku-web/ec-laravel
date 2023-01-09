@@ -5,7 +5,9 @@ import { Image } from "../types/image";
 import { Product } from "../types/product";
 import { Shop } from "../types/shop";
 
-type Inputs = Omit<Product, "id" | "created_at" | "updated_at">;
+type Inputs = Omit<Product, "id" | "created_at" | "updated_at"> & {
+    stock: number;
+};
 
 type Category = {
     id: number;
@@ -27,6 +29,7 @@ export const useProductUpdate = () => {
         is_selling: false,
         sort_order: 1,
         secondary_category_id: -1,
+        stock: 0,
     };
     const [inputs, setInputs] = useState<Inputs>(initState);
     const [error, setError] = useState<boolean>(false);
@@ -80,6 +83,12 @@ export const useProductUpdate = () => {
             sort_order: parseInt(e.target.value),
         }));
     };
+    const handleChangeStock = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setInputs((prev) => ({
+            ...prev,
+            stock: parseInt(e.target.value),
+        }));
+    };
     const handleChangeCategory = (e: React.ChangeEvent<HTMLSelectElement>) => {
         setInputs((prev) => ({
             ...prev,
@@ -129,6 +138,7 @@ export const useProductUpdate = () => {
         handleChangeInfo,
         handleChangePrice,
         handleChangeIsSelling,
+        handleChangeStock,
         handleChangeSortOrder,
         handleChangeCategory,
         modalShow,

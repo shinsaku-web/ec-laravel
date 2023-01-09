@@ -10,8 +10,10 @@ use App\Models\PrimaryCategory;
 use App\Models\Product;
 use App\Models\SecondaryCategory;
 use App\Models\Shop;
+use App\Models\Stock;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
@@ -73,19 +75,26 @@ class ProductController extends Controller
     public function store(StoreProductRequest $request)
     {
         try {
-            Product::create([
-                "shop_id" => $request->shop_id,
-                "name" => $request->name,
-                "information" => $request->information,
-                "price" => $request->price,
-                "is_selling" => $request->is_selling,
-                "sort_order" => $request->sort_order,
-                "secondary_category_id" => $request->secondary_category_id,
-                "image1" => $request->image1,
-                "image2" => $request->image2,
-                "image3" => $request->image3,
-                "image4" => $request->image4,
-            ]);
+            DB::transaction(function () use ($request) {
+                $product =  Product::create([
+                    "shop_id" => $request->shop_id,
+                    "name" => $request->name,
+                    "information" => $request->information,
+                    "price" => $request->price,
+                    "is_selling" => $request->is_selling,
+                    "sort_order" => $request->sort_order,
+                    "secondary_category_id" => $request->secondary_category_id,
+                    "image1" => $request->image1,
+                    "image2" => $request->image2,
+                    "image3" => $request->image3,
+                    "image4" => $request->image4,
+                ]);
+                Stock::create([
+                    "product_id" => $product->id,
+                    "type" => 1,
+                    "quantity" => $request->stock,
+                ]);
+            });
             return response()->json(["message" => "登録に成功しました。"]);
         } catch (\Throwable $th) {
             return response()->json(["message" => $th->getMessage()], Response::HTTP_UNPROCESSABLE_ENTITY);

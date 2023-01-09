@@ -32,7 +32,7 @@ class UpdateProductRequest extends FormRequest
             "is_selling" => "required | boolean",
             "sort_order" => "required | max:8",
             "secondary_category_id" => "required | max:8",
-            "quantity" => "required|integer|between:0,99",
+            "stock" => "required|integer|between:0,99",
             "image1" => "integer | nullable",
             "image2" => "integer | nullable",
             "image3" => "integer | nullable",
