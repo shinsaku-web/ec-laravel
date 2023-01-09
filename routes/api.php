@@ -10,6 +10,7 @@ use App\Http\Controllers\Auth\User\LoginController;
 use App\Http\Controllers\Auth\User\LogoutController;
 use App\Http\Controllers\Auth\User\RegisterController;
 use App\Http\Controllers\Owner\ImageController;
+use App\Http\Controllers\Owner\ProductController;
 use App\Http\Controllers\Owner\ShopController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -54,6 +55,7 @@ Route::middleware('auth:owners')->prefix("owner")->group(function () {
     Route::post('/logout', [OwnerLogoutController::class, "logout"]);
     Route::resource("shop", ShopController::class)->except(["create", "edit"]);
     Route::resource("images", ImageController::class)->except(["show"]);
+    Route::resource("products", ProductController::class)->except(["show"]);
 });
 
 // 認証済み管理者が使用するapi

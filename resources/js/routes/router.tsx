@@ -2,7 +2,6 @@ import { createBrowserRouter } from "react-router-dom";
 import { IndexPage } from "../pages";
 import { ImagePage } from "../pages/owner/images";
 import { ShopsPage } from "../pages/owner/shops";
-import { ProductPage } from "../pages/product/[id]";
 import { CartPage } from "../pages/cart";
 import { RegisterUserPage } from "../pages/register";
 import { LoginUserPage } from "../pages/login";
@@ -16,10 +15,11 @@ import { LoginAdminPage } from "../pages/admin/login";
 import { AdminIndexPage } from "../pages/admin";
 import { CreateOwner } from "../pages/admin/createOwner";
 import { UpdateOwner } from "../pages/admin/updateOwner";
-import { ShopEdit } from "../pages/owner/shops/edit";
 import { NotFound } from "../pages/404";
 import { CreateImages } from "../pages/owner/images/create";
 import { UpdateImages } from "../pages/owner/images/update";
+import { ShopUpdate } from "../pages/owner/shops/update";
+import { ProductUpdatePage } from "../pages/owner/products/update";
 
 export const router = createBrowserRouter([
     {
@@ -29,10 +29,6 @@ export const router = createBrowserRouter([
     {
         path: "/404",
         element: <NotFound />,
-    },
-    {
-        path: "/product/:id",
-        element: <ProductPage />,
     },
     {
         path: "/cart",
@@ -71,6 +67,10 @@ export const router = createBrowserRouter([
                 element: <ProductCreatePage />,
             },
             {
+                path: "/owner/products/update/:id",
+                element: <ProductUpdatePage />,
+            },
+            {
                 path: "/owner/images",
                 element: <ImagePage />,
             },
@@ -87,8 +87,8 @@ export const router = createBrowserRouter([
                 element: <ShopsPage />,
             },
             {
-                path: "/owner/shops/edit/:id",
-                element: <ShopEdit />,
+                path: "/owner/shops/update/:id",
+                element: <ShopUpdate />,
             },
         ],
     },

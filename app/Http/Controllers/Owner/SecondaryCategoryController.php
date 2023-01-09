@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Owner;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreSecondaryCategoryRequest;
 use App\Http\Requests\UpdateSecondaryCategoryRequest;
 use App\Models\SecondaryCategory;

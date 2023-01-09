@@ -10,9 +10,10 @@ import {
 } from "react-bootstrap";
 import { Form } from "react-router-dom";
 import { ModalSelectImage } from "../../../components/molecules/ModalSelectImage";
-import { useProductCreate } from "../../../hooks/useProductCreate";
+import { useProductDelete } from "../../../hooks/useProductDelete";
+import { useProductUpdate } from "../../../hooks/useProductUpdate";
 
-export const ProductCreatePage = () => {
+export const ProductUpdatePage = () => {
     const {
         inputs,
         shops,
@@ -32,11 +33,13 @@ export const ProductCreatePage = () => {
         selectedImages,
         setSelectedImages,
         error,
-    } = useProductCreate();
+    } = useProductUpdate();
+
+    const { handleDelete } = useProductDelete();
 
     return (
         <div style={{ maxWidth: 600, margin: "auto" }}>
-            <h3>商品登録</h3>
+            <h3>商品の編集</h3>
             <div style={{ height: 8 }}></div>
             <Form
                 action=""
@@ -58,6 +61,7 @@ export const ProductCreatePage = () => {
                     <FormSelect
                         aria-label="select shop"
                         onChange={handleChangeShop}
+                        value={inputs.shop_id}
                     >
                         <option>Shopを選択</option>
                         {shops.map((shop) => (
@@ -74,6 +78,7 @@ export const ProductCreatePage = () => {
                         type="text"
                         placeholder="商品名"
                         onChange={handleChangeName}
+                        value={inputs.name}
                     />
                 </FormGroup>
 
@@ -84,6 +89,7 @@ export const ProductCreatePage = () => {
                         rows={3}
                         placeholder="商品情報"
                         onChange={handleChangeInfo}
+                        value={inputs.information}
                     />
                 </FormGroup>
 
@@ -93,6 +99,7 @@ export const ProductCreatePage = () => {
                         type="number"
                         placeholder="商品価格"
                         onChange={handleChangePrice}
+                        value={inputs.price}
                     />
                 </FormGroup>
 
@@ -112,15 +119,17 @@ export const ProductCreatePage = () => {
                         type="number"
                         placeholder="1"
                         onChange={handleChangeSortOrder}
+                        value={inputs.sort_order}
                     />
                 </FormGroup>
 
                 <FormGroup className="mb-3" controlId="stock">
-                    <FormLabel>Inital Stock</FormLabel>
+                    <FormLabel>Stock Plus Minus</FormLabel>
                     <FormControl
                         type="number"
                         placeholder="1~99"
                         onChange={handleChangeStock}
+                        value={inputs.stock}
                     />
                 </FormGroup>
 
@@ -129,6 +138,7 @@ export const ProductCreatePage = () => {
                     <FormSelect
                         aria-label="select category"
                         onChange={handleChangeCategory}
+                        value={inputs.secondary_category_id}
                     >
                         <option>Categoryを選択</option>
                         {categories.map((category) => (
@@ -182,10 +192,21 @@ export const ProductCreatePage = () => {
 
                 <div className="d-grid pt-4">
                     <Button variant="primary" type="submit">
-                        登録
+                        変更する
                     </Button>
                 </div>
             </Form>
+            <div style={{ height: 8 }} />
+            <div className="d-grid pt-4">
+                <Button
+                    onClick={handleDelete}
+                    variant="outline-danger"
+                    type="button"
+                >
+                    削除
+                </Button>
+            </div>
+            <div style={{ height: 40 }} />
         </div>
     );
 };

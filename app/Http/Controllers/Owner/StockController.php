@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Owner;
 
-use App\Http\Requests\StorePrimaryCategoryRequest;
-use App\Http\Requests\UpdatePrimaryCategoryRequest;
-use App\Models\PrimaryCategory;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreStockRequest;
+use App\Http\Requests\UpdateStockRequest;
+use App\Models\Stock;
 
-class PrimaryCategoryController extends Controller
+class StockController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -31,10 +32,10 @@ class PrimaryCategoryController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StorePrimaryCategoryRequest  $request
+     * @param  \App\Http\Requests\StoreStockRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StorePrimaryCategoryRequest $request)
+    public function store(StoreStockRequest $request)
     {
         //
     }
@@ -42,10 +43,10 @@ class PrimaryCategoryController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\PrimaryCategory  $primaryCategory
+     * @param  \App\Models\Stock  $stock
      * @return \Illuminate\Http\Response
      */
-    public function show(PrimaryCategory $primaryCategory)
+    public function show(Stock $stock)
     {
         //
     }
@@ -53,10 +54,10 @@ class PrimaryCategoryController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\PrimaryCategory  $primaryCategory
+     * @param  \App\Models\Stock  $stock
      * @return \Illuminate\Http\Response
      */
-    public function edit(PrimaryCategory $primaryCategory)
+    public function edit(Stock $stock)
     {
         //
     }
@@ -64,11 +65,11 @@ class PrimaryCategoryController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdatePrimaryCategoryRequest  $request
-     * @param  \App\Models\PrimaryCategory  $primaryCategory
+     * @param  \App\Http\Requests\UpdateStockRequest  $request
+     * @param  \App\Models\Stock  $stock
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdatePrimaryCategoryRequest $request, PrimaryCategory $primaryCategory)
+    public function update(UpdateStockRequest $request, Stock $stock)
     {
         //
     }
@@ -76,10 +77,10 @@ class PrimaryCategoryController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\PrimaryCategory  $primaryCategory
+     * @param  \App\Models\Stock  $stock
      * @return \Illuminate\Http\Response
      */
-    public function destroy(PrimaryCategory $primaryCategory)
+    public function destroy(Stock $stock)
     {
         //
     }

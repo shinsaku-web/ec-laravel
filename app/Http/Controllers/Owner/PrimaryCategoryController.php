@@ -1,11 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Owner;
 
-use App\Models\Product;
-use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\StorePrimaryCategoryRequest;
+use App\Http\Requests\UpdatePrimaryCategoryRequest;
+use App\Models\PrimaryCategory;
 
-class ProductController extends Controller
+class PrimaryCategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -30,10 +32,10 @@ class ProductController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\StorePrimaryCategoryRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StorePrimaryCategoryRequest $request)
     {
         //
     }
@@ -41,10 +43,10 @@ class ProductController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Product  $product
+     * @param  \App\Models\PrimaryCategory  $primaryCategory
      * @return \Illuminate\Http\Response
      */
-    public function show(Product $product)
+    public function show(PrimaryCategory $primaryCategory)
     {
         //
     }
@@ -52,10 +54,10 @@ class ProductController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Product  $product
+     * @param  \App\Models\PrimaryCategory  $primaryCategory
      * @return \Illuminate\Http\Response
      */
-    public function edit(Product $product)
+    public function edit(PrimaryCategory $primaryCategory)
     {
         //
     }
@@ -63,11 +65,11 @@ class ProductController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Product  $product
+     * @param  \App\Http\Requests\UpdatePrimaryCategoryRequest  $request
+     * @param  \App\Models\PrimaryCategory  $primaryCategory
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Product $product)
+    public function update(UpdatePrimaryCategoryRequest $request, PrimaryCategory $primaryCategory)
     {
         //
     }
@@ -75,10 +77,10 @@ class ProductController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Product  $product
+     * @param  \App\Models\PrimaryCategory  $primaryCategory
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Product $product)
+    public function destroy(PrimaryCategory $primaryCategory)
     {
         //
     }
