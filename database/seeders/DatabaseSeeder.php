@@ -3,6 +3,9 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
+use App\Models\Product;
+use App\Models\Stock;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -44,8 +47,10 @@ class DatabaseSeeder extends Seeder
             ImageSeeder::class,
             PrimaryCategorySeeder::class,
             SecondaryCategorySeeder::class,
-            ProductSeeder::class,
-            StockSeeder::class,
+            // ProductSeeder::class,
+            // StockSeeder::class,
         ]);
+        Product::factory(300)->create();
+        Stock::factory(1000)->create();
     }
 }
